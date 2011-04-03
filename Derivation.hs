@@ -7,6 +7,7 @@ import Data.Phonology.RuleParsers
 import Data.List (transpose)
 import Data.Maybe (fromMaybe)
 
+import Codec.Binary.UTF8.String (encodeString, decodeString)
 import Network.CGI
 
 toRepresentations :: RuleState -> String -> [[Segment]]
@@ -24,9 +25,9 @@ formatTable = ("<table>"++) . (++"</table") .
 
 cgiMain :: CGI CGIResult
 cgiMain = setHeader "Content-type" "text/html; charset=UTF-8" >> 
-          getInput "ruletext" >>= 
-          \(Just rs) -> (getInput "reptext" >>= 
-                         output . formatTable . maybeDerivationV' defState rs . fromMaybe "")
+          fmap (decodeString . fromMaybe "") (getInput "ruletext") >>= 
+          \rs -> (getInput "reptext" >>= 
+                           output . encodeString . formatTable . maybeDerivationV' defState rs . decodeString . fromMaybe "")
 
 main :: IO ()
 main = runCGI (handleErrors cgiMain)
