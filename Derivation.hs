@@ -19,7 +19,7 @@ maybeDerivationV' st ruleText = transpose .
                                 toRepresentations st
 
 formatTable :: [[Maybe String]] -> String
-formatTable = ("<table>"++) . (++"</table") . 
+formatTable = ("<table>"++) . (++"</table>") . 
               concatMap (("<tr>"++) . (++"</tr>") . 
                          concatMap (("<td>"++) . 
                                     (++"</td>") . 
