@@ -21,13 +21,16 @@ maybeDerivationV' st ruleText = transpose .
 formatTable :: [[Maybe String]] -> String
 formatTable = ("<table>"++) . (++"</table") . 
               concatMap (("<tr>"++) . (++"</tr>") . 
-                         concatMap (("<td>"++) . (++"</td>") . fromMaybe "---" ))
+                         concatMap (("<td>"++) . 
+                                    (++"</td>") . 
+                                    fromMaybe "---" ))
 
 cgiMain :: CGI CGIResult
 cgiMain = setHeader "Content-type" "text/html; charset=UTF-8" >> 
           fmap (decodeString . fromMaybe "") (getInput "ruletext") >>= 
           \rs -> (getInput "reptext" >>= 
-                           output . encodeString . formatTable . maybeDerivationV' defState rs . decodeString . fromMaybe "")
+                           output . encodeString . formatTable . 
+                           maybeDerivationV' defState rs . decodeString . fromMaybe "")
 
 main :: IO ()
 main = runCGI (handleErrors cgiMain)
