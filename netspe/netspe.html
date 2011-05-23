@@ -5,23 +5,37 @@
   <head>
     <title>NetSPE</title>
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-darkness/jquery-ui.css" rel="stylesheet" type="text/css"></link>
+    <link href="css/netspe.css" rel="stylesheet" type="text/css"></link>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/netspe.js"></script>
   </head>
   <body>
-    <h1>NetSPE</h1>
-    <div id="boxes">
-    <div id="repbox" style="float:left">
-      <h2>Underlying Representations</h2>
-      <textarea rows="20" cols="40" id="reptext" name="reptext"></textarea>
+    <div id="header">
+      <h1><img src="images/netspe.png" alt="NetSPE"/></h1>
+    </div>
+    <div id="controls" style="float:left">
+    <div id="repbox">
+      <h2>URs</h2>
+      <textarea rows="5" cols="30" id="reptext" name="reptext"></textarea>
+    </div>
+    <div id="srepbox">
+      <h2>SRs</h2>
+      <textarea  rows="5" cols="30" id="sreptext" name="sreptext"></textarea>
     </div>
     <div id="rulebox">
       <h2>Rules</h2>
-      <textarea  rows="20" cols="40" id="ruletext" name="reptext"></textarea>
-    </div>
+      <textarea  rows="5" cols="30" id="ruletext" name="ruletext"></textarea>
     </div>
     <button id="evaluate">Evaluate</button>
-    <div id="derivation">Derivation will appear here.</div>
+    </div>
+    <h2>Derivation</h2>
+    <div id="derivation">
+      <table>
+	<tr class="ur"><td>/#bab#/</td><td>/#baba#/</td><td>/#babab#/</td></tr>
+	<tr><td></td><td></td><td></td></tr>
+	<tr><td></td><td></td><td></td></tr>
+      </table>
+    </div>
   </body>
 </html>
