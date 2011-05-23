@@ -1,0 +1,70 @@
+body, header
+{
+   margin: 0px, 0px, 0px, 0px;
+}
+
+header
+{
+   width:100%;
+}
+
+body, h1, h2, textarea
+{
+   font-family: Charis SIL, Doulos SIL, Times New Roman, Gentium, DejaVu Sans;
+   font-size: 1em;
+}
+
+h1, h2
+{
+   margin: 0px 0px 0px 0px;
+}
+
+h1
+{
+   text-align: center;
+   height: 70px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   color: #FFFFFF;
+   background-color: #000000;
+}
+
+textarea
+{
+   font-size: 0.8em;
+   width: 100%;
+   height: 30%;
+}
+
+#controls
+{
+   margin-right: 10px;
+}
+
+table, th, td
+{
+   border: 0px solid black;
+}
+
+table
+{
+   border-collapse:collapse;
+}
+
+td
+{
+   padding-left: 1em;
+   padding-right: 1em;
+}
+
+tr.ur td 
+{
+   border: 1px solid black;
+   background-color: #EEEEEE;;
+}
+
+tr.sr td
+{
+   border: 1px solid black;
+   background-color: #EEEEEE;;
+}
