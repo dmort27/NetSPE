@@ -8,7 +8,7 @@ header
    width:100%;
 }
 
-body, h1, h2, textarea
+body, h1, h2, textarea, li, .phonetic
 {
    font-family: Charis SIL, Doulos SIL, Times New Roman, Gentium, DejaVu Sans;
    font-size: 1em;
@@ -67,4 +67,19 @@ tr.sr td
 {
    border: 1px solid black;
    background-color: #EEEEEE;;
+}
+
+ul.sortable
+{
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   width: 100%;
+}
+
+ul.sortable li
+{
+   margin: 0;
+   font-size: 0.8em;
+   height: 1.5em;
 }
