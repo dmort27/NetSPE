@@ -44,21 +44,34 @@ var enclose = function(l, r, s) {
 // };
 
 var textareaToSortableList = function(id) {
-    var ruleList = $(id).val().split('\n')
+    var ruleList = $('#' + id).val().split('\n')
         .map(function(r) {
             return '<li class="phonetic">' + r + '</li>';
         }).join('');
-    $(id).replaceWith('<ul id="ruletext" class="sortable">' + ruleList + '<ul>');
+    $('#' + id).replaceWith('<ul id="ruletext" class="sortable">' + ruleList + '<ul>');
     $(".sortable").sortable();
     $(".sortable").disableSelection();
-    $(".sortable li").addClass("ui-state-default");
+    $(".sortable li").addClass("ui-state-default").addClass("phonetic");
+};
+
+var sortableListToTextarea = function(id) {
+    var ruleList = [];
+    $('#' + id + ' li').each(function(i) {
+        ruleList[i] = $(this).text();
+    });
+    $('#' + id).replaceWith(
+        $('<textarea />').attr('id', id).text(ruleList.join('\n')).addClass('phonetic')
+    );
 };
 
 $(document).ready( function() {
 
-    $("#controls").addClass("ui-widget phonetic");
-    $(".box").addClass("ui-widget phonetic");
-    $(".box textarea").addClass("ui-widget phonetic");
+    $('textarea').css('font-family', 'Charis SIL, Monaco, Lucida Grande, Doulos SIL, DejaVu Serif, DejaVu Sans, DejaVu Sans Mono, Times New Roman').css('font-size', '0.6em');
+    $("#main").addClass("ui-helper-clearfix");
+    $("#controls").addClass("ui-widget ui-helper-clearfix phonetic");
+    $(".box").addClass("ui-widget ui-helper-clearfix phonetic");
+    $(".control").addClass("ui-widget");
+    $(".control textarea").addClass("ui-widget phonetic");
     $("h2").addClass("ui-widget ui-widget-header phonetic");
     
     var formatDerivation = function() {

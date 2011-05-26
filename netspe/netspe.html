@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <title>NetSPE</title>
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-darkness/jquery-ui.css" rel="stylesheet" type="text/css"></link>
+    <!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-darkness/jquery-ui.css" rel="stylesheet" type="text/css"></link> -->
+    <link href="js/jquery-ui-1.8.13.custom/css/ui-darkness/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css"></link>
     <link href="css/netspe.css" rel="stylesheet" type="text/css"></link>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery-ui-1.8.13.custom/js/jquery-1.5.1.min.js"></script>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery-ui-1.8.13.custom/js/jquery-ui-1.8.13.custom.min.js"></script>
     <script type="text/javascript" src="js/netspe.js"></script>
   </head>
   <body>
@@ -16,26 +19,36 @@
     </div>
     <div id="controls" class="controls" style="float:left">
       <div id="repbox" class="box">
-	<h2>URs</h2>
-	<textarea rows="5" cols="30" id="reptext" name="reptext"></textarea>
+      </div>
+      <h2>URs</h2>
+      <div id="repcontrol" class="control">
+	<textarea id="reptext" name="reptext" cols="1" rows="1">mnŋ</textarea>
       </div>
       <div id="srepbox" class="box">
 	<h2>SRs</h2>
-	<textarea  rows="5" cols="30" id="sreptext" name="sreptext"></textarea>
+	<div id="srepcontrol" class="control">
+	  <textarea id="sreptext" name="sreptext" cols="1" rows="1"></textarea>
+	</div>
       </div>
       <div id="rulebox" class="box">
 	<h2>Rules</h2>
-	<textarea  rows="5" cols="30" id="ruletext" name="ruletext"></textarea>
+	<div id="rulecontrol" class="control">
+	  <textarea id="ruletext" name="ruletext" cols="1" rows="1"></textarea>
+	</div>
       </div>
       <button id="evaluate">Evaluate</button>
     </div>
-    <h2>Derivation</h2>
-    <div id="derivation" class="table">
-      <table>
-	<tr class="ur"><td>/#bab#/</td><td>/#baba#/</td><td>/#babab#/</td></tr>
-	<tr><td></td><td></td><td></td></tr>
-	<tr><td></td><td></td><td></td></tr>
-      </table>
+    <div id="main">
+      <h2>Derivation</h2>
+      <p>This is a text.</p>
+      <div id="derivation" class="table">
+	<table>
+	  <tr class="ur"><td>/#bab#/</td><td>/#baba#/</td><td>/#babab#/</td></tr>
+	  <tr><td>---</td><td>---</td><td>---</td></tr>
+	  <tr><td>---</td><td>---</td><td>---</td></tr>
+	  <tr class="sr"><td>/#bab#/</td><td>/#baba#/</td><td>/#babab#/</td></tr>
+	</table>
+      </div>
     </div>
   </body>
 </html>
