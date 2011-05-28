@@ -6,12 +6,23 @@ body, header
 header
 {
    width:100%;
+   clear: both;
 }
 
 body, h1, h2, textarea, li
 {
    font-family: Charis SIL, Doulos SIL, Times New Roman, Gentium, DejaVu Sans;
    font-size: 1em;
+}
+
+#controls
+{
+   margin: 5px 5px 0px 0px;
+}
+
+#derivation
+{
+   margin: 5px 5px 0px 315px;
 }
 
 h1, h2
@@ -32,16 +43,20 @@ h1
 h2
 {
    width:100%;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 controls h1
 {
-   width: 200px;
+   width: 300px;
 }
 
 textarea
 {
-   width: 200px;
+   width: 300px;
    height: 100px;
 }
 
@@ -53,6 +68,8 @@ table, th, td
 table
 {
    border-collapse:collapse;
+   margin: 5px 5px 5px 5px;
+   padding: 5px 5px 5px 5px;
 }
 
 td
@@ -63,7 +80,7 @@ td
 
 .control
 {
-   width: 200px;
+   width: 300px;
 }
 
 
@@ -92,10 +109,18 @@ ul.sortable li
    margin: 0;
    font-size: 0.8em;
    height: 1.5em;
+   font-weight: normal;
 }
 
 .phonetic
 {
    font-family: "Charis SIL", "Doulos SIL", "Times New Roman", "Gentium Plus", "DejaVu Sans";
    font-size: 1em;
+}
+
+.placeholder
+{
+   color: red;
+   font-size: 1em;
+   text-align: center;
 }

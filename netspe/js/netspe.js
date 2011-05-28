@@ -2,56 +2,28 @@ var enclose = function(l, r, s) {
     return l + s + r;
 };
 
-// var lenSharedPrefix = function(s1, s2) {
-//     var i, result;
-//     for (i=0; i < s1.length; i++) {
-//         if (s1[i] == s2[i]) {
-//             result = i + 1;
-//         }
-//     }
-//     return result;
-// };
-
-// var lenSharedSuffix = function(s1, s2) {
-//     var t1 = s1.split('').reverse().join('');
-//     var t2 = s2.split('').reverse().join('');
-//     var len = lenSharedPrefix(t1, t2);
-
-//     if (len === undefined) {
-//         return -1;
-//     } else {
-//         return len;
-//     }
-// };
-
-// var parts = function(s1, s2) {
-//     var parts;
-//     if (s1 === s2) {
-//         return [s2, "", ""];
-//     } else {
-//         var pref = lenSharedPrefix(s1, s2);
-//         var suff = lenSharedSuffix(s1, s2);
-//         if (suff === -1 && pref == -1) {
-//             return ["", s2, ""];
-//         } else {
-//             if (suff === -1) {
-//                 return [s2.slice(0, pref), s2.slice(pref + 1), ""];
-//             } else {
-//                 return [];
-//             }
-//         }
-//     }
-// };
+var phoneticFonts = 'Charis SIL, Gentium Plus, Doulos SIL, Times New Roman, DejaVu Serif, DejaVu Sans, serif, sans';
 
 var textareaToSortableList = function(id) {
-    var ruleList = $('#' + id).val().split('\n')
-        .map(function(r) {
-            return '<li class="phonetic">' + r + '</li>';
-        }).join('');
-    $('#' + id).replaceWith('<ul id="ruletext" class="sortable">' + ruleList + '<ul>');
-    $(".sortable").sortable();
-    $(".sortable").disableSelection();
-    $(".sortable li").addClass("ui-state-default").addClass("phonetic");
+
+    console.log('id=#'+ id);
+    
+    var newList = $('<ul />').attr('id', id).addClass('sortable');
+
+    console.log('newList=' + newList);
+    
+    $.each($('#' + id).val().split('\n'), function (i, x) {
+        newList.append($('<li />').append(x));
+    });
+
+    console.log('newList='+newList);
+    
+    $('#' + id).replaceWith(newList);
+    $('#' + id).sortable().disableSelection();
+    $('#' + id + ' li').addClass('ui-state-default')
+        .css('font-family', phoneticFonts)
+        .css('font-size', '0.8em');
+
 };
 
 var sortableListToTextarea = function(id) {
@@ -60,19 +32,30 @@ var sortableListToTextarea = function(id) {
         ruleList[i] = $(this).text();
     });
     $('#' + id).replaceWith(
-        $('<textarea />').attr('id', id).text(ruleList.join('\n')).addClass('phonetic')
+        $('<textarea />')
+            .attr('id', id)
+            .text(ruleList.join('\n'))
+            .addClass('phonetic')
+            .css('font-family', phoneticFonts)
+            .css('font-size', '0.8em')
     );
 };
 
 $(document).ready( function() {
-
-    $('textarea').css('font-family', 'Charis SIL, Monaco, Lucida Grande, Doulos SIL, DejaVu Serif, DejaVu Sans, DejaVu Sans Mono, Times New Roman').css('font-size', '0.6em');
-    $("#main").addClass("ui-helper-clearfix");
-    $("#controls").addClass("ui-widget ui-helper-clearfix phonetic");
-    $(".box").addClass("ui-widget ui-helper-clearfix phonetic");
-    $(".control").addClass("ui-widget");
-    $(".control textarea").addClass("ui-widget phonetic");
-    $("h2").addClass("ui-widget ui-widget-header phonetic");
+    
+    $('textarea').css('font-family', 'Charis SIL, Gentium Plus, Doulos SIL, Times New Roman, DejaVu Serif, DejaVu Sans, serif, sans')
+        .css('font-size', '0.8em');
+    $("#main").addClass("ui-widget ui-corner-tl ui-corner-tr phonetic");
+    $("#controls").addClass("ui-widget phonetic");
+    $(".box").addClass("ui-widget phonetic");
+    $(".control").addClass("ui-widget ui-helper-cleafix")
+            .css('padding', '2px 2px 2px 2px');
+    $(".control textarea").addClass("ui-widget phonetic ui-helper-clearfix")
+        .css('padding', '2px 2px 2px 2px');
+    $("h2").addClass("ui-widget ui-widget-header ui-corner-tl ui-corner-tr phonetic")
+        .css('text-align', 'center')
+        .css('padding', '2px 2px 2px 2px');
+    $('h1').addClass('ui-widget ui-widget-header  ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br phonetic');
     
     var formatDerivation = function() {
         $("tr:first").addClass("ur");
@@ -84,15 +67,52 @@ $(document).ready( function() {
         $("tr.sr td").each(function(i) {
             $(this).text(enclose('[', ']', $(this).text()));
         });
+
+        $("td").each(function(i) {
+            if ($(this).text()==='---') { $(this).text('—'); }
+        });
+        
+        $('#derivation table').addClass("ui-widget phonetic")
+        .css('font-size', '1em');
+
+        // Build a row of intended SRs.
+
+        unenclose = function(x) {
+            return x.slice(1, x.length - 1);
+        };
+        
+        var srepsTR = $('<tr/>');
+        var srepsCalc = $('#main table tr:last-child').children().map(function() { return unenclose($(this).text()); });
+        $.each($('#sreptext').val().split('\n'), function(i, v) {
+            if (v === srepsCalc[i]) {
+                srepsTR.append($('<td></td>').append(v));
+            } else {
+                srepsTR.append($('<td></td>').append($('<b></b>').append(v)));
+            }
+        });
+        $('#main table').append(srepsTR);
     };
     
     var evaluate = function() {
         var dt = { ruletext: $('#ruletext').val(),
 	           reptext: $('#reptext').val() };
-        $('#derivation').load('/cgi-bin/netspe/derivation.cgi', dt, function(){ formatDerivation(); });
+        $('#derivation-container').load('/cgi-bin/netspe/derivation.cgi', dt, function(){ formatDerivation(); });
     };
     
     $('#evaluate').button();
     $('#evaluate').click(evaluate);
-    
+
+    $('div.control').dblclick( function() {
+        console.log('clicked ' + $(this));
+        var list = $(this).children().first().next();
+        var id = list.attr('id');
+        if (list.hasClass('sortable')) {
+            sortableListToTextarea(id);
+        } else {
+            textareaToSortableList(id);
+        }
+    });
+
+    formatDerivation();
+
 });
