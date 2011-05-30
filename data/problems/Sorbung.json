@@ -1,0 +1,4 @@
+{ theURs = ["mid", "midmii", "kud", "kudmətin", "kudkʰoom", "kʰoob"],
+  theSRs = ["mit", "midmii", "kut", "kudmətin", "kutkʰoom", "kʰoop"],
+  theRules = ["[-son,-cons] -> [-voi]/_{#, [-voi]}"]
+}
