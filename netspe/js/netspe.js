@@ -6,12 +6,8 @@ var phoneticFonts = 'Charis SIL, Gentium Plus, Doulos SIL, Times New Roman, Deja
 
 var textareaToSortableList = function(id) {
 
-    console.log('id=#'+ id);
-    
     var newList = $('<ul />').attr('id', id).addClass('sortable');
 
-    console.log('newList=' + newList);
-    
     $.each($('#' + id).val().split('\n'), function (i, x) {
         newList.append($('<li />').append(x));
     });
@@ -94,13 +90,24 @@ $(document).ready( function() {
     };
     
     var evaluate = function() {
+
+        $.each($('#controls ul.sortable'), function() {
+            sortableListToTextarea($(this).attr('id'));
+        });
+        
         var dt = { ruletext: $('#ruletext').val(),
 	           reptext: $('#reptext').val() };
-        $('#derivation-container').load('/cgi-bin/netspe/derivation.cgi', dt, function(){ formatDerivation(); });
+        $('#derivation-container')
+            .load('/cgi-bin/netspe/derivation.cgi', dt,
+                  function(){
+                      formatDerivation();
+                  });
     };
     
     $('#evaluate').button();
     $('#evaluate').click(evaluate);
+
+    $('#load').button();
 
     $('div.control').dblclick( function() {
         console.log('clicked ' + $(this));
