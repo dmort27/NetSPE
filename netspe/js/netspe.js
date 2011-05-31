@@ -37,6 +37,50 @@ var sortableListToTextarea = function(id) {
     );
 };
 
+var handleFileSelect = function(evt) {
+    console.log("File was changed.");
+    var files = evt.target.files;
+    
+    for (var i = 0, f; f = files[i]; i++) {
+        if (!f.type.match(".*")) {
+            console.log("Did not match!");
+            continue;
+        }
+
+        var reader = new FileReader();
+        
+        reader.onload = (function(theFile) {
+            return function(e) {
+                var dataFields =
+                    { 'theURs': 'reptext',
+                      'theSRs': 'sreptext',
+                      'theRules': 'ruletext' };
+                
+                var metadataFields =
+                    { 'theLanguage': 'data-language',
+                      'theFamily': 'data-family',
+                      'theSource': 'data-source' };
+                
+                var json = $.parseJSON(e.target.result);
+
+                console.log(json);
+
+                $.each(dataFields, function(k1, k2) {
+                    var qid = '#' + k2;
+                    $(qid).val(json[k1].join("\n"));
+                });
+
+                $.each(metadataFields, function(k1, k2) {
+                    var qid = '#' + k2 + ' span';
+                    $(qid).text(json[k1]);
+                });
+            };
+        })(f);
+
+        reader.readAsText(f);
+    }
+};
+
 $(document).ready( function() {
     
     $('textarea').css('font-family', 'Charis SIL, Gentium Plus, Doulos SIL, Times New Roman, DejaVu Serif, DejaVu Sans, serif, sans')
@@ -106,9 +150,12 @@ $(document).ready( function() {
     
     $('#evaluate').button();
     $('#evaluate').click(evaluate);
-
+    
     $('#load').button();
+    $('#load').click(function() {});
 
+    $('#files').bind("change", handleFileSelect);
+    
     $('div.control').dblclick( function() {
         console.log('clicked ' + $(this));
         var list = $(this).children().first().next();

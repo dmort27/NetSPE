@@ -20,7 +20,7 @@ body, h1, h2, textarea, li
    margin: 5px 5px 0px 0px;
 }
 
-#derivation
+#derivation, #metadata
 {
    margin: 5px 5px 0px 315px;
 }
@@ -123,4 +123,14 @@ ul.sortable li
    color: red;
    font-size: 1em;
    text-align: center;
+}
+
+#metadata div
+{
+   font-weight: bold;
+}
+
+#metadata div span
+{
+   font-weight: normal;
 }
