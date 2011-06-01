@@ -1,0 +1,25 @@
+{
+    "theURs": [
+        "#kætz#",
+        "#dɑgz",
+        "#fɪʃz#",
+        "#mejz#"
+    ],
+    "theSRs": [
+        "#kæts#",
+        "#dɑgz",
+        "#fɪʃəz#"
+    ],
+    "theRules": [
+        "0 -> ə / [+cont,+cor]_[+cont,+cor]",
+        "[-son,-cont] -> [-voi]/ [-voi]_#"
+    ],
+    "theTitle": "English",
+    "theSource": "None",
+    "theLanguage": "English",
+    "theFamily": "Indo-European, Germanic, West-Germanic",
+    "withAutomaticBoundaries": false,
+    "withFixedURs": false,
+    "withFixedSRs": false,
+    "withFixedRules": false
+}
