@@ -134,3 +134,14 @@ ul.sortable li
 {
    font-weight: normal;
 }
+
+#alphabuttons
+{
+   width: 300px;
+   text-align: center;
+}
+
+#files, #evaluate, #alphavars
+{
+   width: 300px;
+}

@@ -7,11 +7,15 @@
     <!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-darkness/jquery-ui.css" rel="stylesheet" type="text/css"></link> -->
     <link href="js/jquery-ui-1.8.13.custom/css/ui-darkness/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css"></link>
     <link href="css/netspe.css" rel="stylesheet" type="text/css"></link>
+    <link href="css/fileinput.css" rel="stylesheet" type="text/css"></link>
+
     <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script> -->
     <script type="text/javascript" src="js/jquery-1.6.1.js"></script>
     <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script> -->
     <script type="text/javascript" src="js/jquery-ui-1.8.13.custom/js/jquery-ui-1.8.13.custom.min.js"></script>
     <script type="text/javascript" src="js/netspe.js"></script>
+    <script type="text/javascript" src="js/jquery.fileinput.js"></script>
+
   </head>
   <body>
     <div id="header">
@@ -20,24 +24,35 @@
     <div id="controls" class="controls" style="float:left">
       <div id="repcontrol" class="control">
 	<h2>URs</h2>
-	<textarea id="reptext" name="reptext" cols="1" rows="1">a&#x0A;b&#x0A;c</textarea>
+	<textarea id="reptext" name="reptext" cols="1" rows="1"></textarea>
       </div>
       <div id="srepcontrol" class="control">
 	<h2>SRs</h2>
-	<textarea id="sreptext" name="sreptext" cols="1" rows="1">a&#x0A;b&#x0A;e</textarea>
+	<textarea id="sreptext" name="sreptext" cols="1" rows="1"></textarea>
       </div>
       <div id="rulecontrol" class="control">
 	<h2>Rules</h2>
-	<textarea id="ruletext" name="ruletext" cols="1" rows="1">a->b/c_d</textarea>
+	<textarea id="ruletext" name="ruletext" cols="1" rows="1"></textarea>
       </div>
-      <button id="evaluate">Derivation</button>
-      <input type="file" id="files" name="files[]" multiple />
+      <div id="alphabuttons">
+	<button>α</button>
+	<button>β</button>
+	<button>γ</button>
+	<button>δ</button>
+	<button>ε</button>
+	<button>ϛ</button>
+      </div>
+      <button id="evaluate">Evaluate Derivation</button>
+      <div></div>
+      <p>Play an existing puzzle:</p>
+      <input type="file" id="files" name="files[]" />
     </div>
+
     <div id="main">
       <div id="derivation">
 	<h2>Derivation</h2>
 	<div id="derivation-container">
-	  <p class="placeholder">Your derivation will appear here when you click <em>evaluate</em>.</p>
+	  <p class="placeholder"></p>
 	</div>
       </div>
     </div>

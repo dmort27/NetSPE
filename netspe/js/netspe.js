@@ -153,11 +153,14 @@ $(document).ready( function() {
     
     $('#evaluate').button();
     $('#evaluate').click(evaluate);
-    
+
+    $("#files").fileinput({
+        buttonText: 'Choose Puzzle...',
+        inputText: 'None'
+    });
     $('#files').bind("change", handleFileSelect);
     
     $('div.control').dblclick( function() {
-        console.log('clicked ' + $(this));
         var list = $(this).children().first().next();
         var id = list.attr('id');
         if (list.hasClass('sortable')) {
@@ -166,7 +169,12 @@ $(document).ready( function() {
             textareaToSortableList(id);
         }
     });
-
+    
     formatDerivation();
-
+    
+    $("#alphabuttons button").button();
+    $("#alphabuttons button").click(function() {
+       $("#ruletext").append($(this).text()); 
+    });
+    
 });
