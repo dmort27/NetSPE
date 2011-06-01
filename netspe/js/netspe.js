@@ -37,50 +37,6 @@ var sortableListToTextarea = function(id) {
     );
 };
 
-var handleFileSelect = function(evt) {
-    console.log("File was changed.");
-    var files = evt.target.files;
-    
-    for (var i = 0, f; f = files[i]; i++) {
-        if (!f.type.match(".*")) {
-            console.log("Did not match!");
-            continue;
-        }
-
-        var reader = new FileReader();
-        
-        reader.onload = (function(theFile) {
-            return function(e) {
-                var dataFields =
-                    { 'theURs': 'reptext',
-                      'theSRs': 'sreptext',
-                      'theRules': 'ruletext' };
-                
-                var metadataFields =
-                    { 'theLanguage': 'data-language',
-                      'theFamily': 'data-family',
-                      'theSource': 'data-source' };
-                
-                var json = $.parseJSON(e.target.result);
-
-                console.log(json);
-
-                $.each(dataFields, function(k1, k2) {
-                    var qid = '#' + k2;
-                    $(qid).val(json[k1].join("\n"));
-                });
-
-                $.each(metadataFields, function(k1, k2) {
-                    var qid = '#' + k2 + ' span';
-                    $(qid).text(json[k1]);
-                });
-            };
-        })(f);
-
-        reader.readAsText(f);
-    }
-};
-
 $(document).ready( function() {
     
     $('textarea').css('font-family', 'Charis SIL, Gentium Plus, Doulos SIL, Times New Roman, DejaVu Serif, DejaVu Sans, serif, sans')
@@ -89,7 +45,7 @@ $(document).ready( function() {
     $("#controls").addClass("ui-widget phonetic");
     $(".box").addClass("ui-widget phonetic");
     $(".control").addClass("ui-widget ui-helper-cleafix")
-            .css('padding', '2px 2px 2px 2px');
+        .css('padding', '2px 2px 2px 2px');
     $(".control textarea").addClass("ui-widget phonetic ui-helper-clearfix")
         .css('padding', '2px 2px 2px 2px');
     $("h2").addClass("ui-widget ui-widget-header ui-corner-tl ui-corner-tr phonetic")
@@ -113,7 +69,7 @@ $(document).ready( function() {
         });
         
         $('#derivation table').addClass("ui-widget phonetic")
-        .css('font-size', '1em');
+            .css('font-size', '1em');
 
         // Build a row of intended SRs.
 
@@ -147,13 +103,57 @@ $(document).ready( function() {
                       formatDerivation();
                   });
     };
+
+    var handleFileSelect = function(evt) {
+        console.log("File was changed.");
+            var files = evt.target.files;
+        
+        for (var i = 0, f; f = files[i]; i++) {
+            if (!f.type.match(".*")) {
+                console.log("Did not match!");
+                continue;
+            }
+
+            var reader = new FileReader();
+            
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    var dataFields =
+                        { 'theURs': 'reptext',
+                          'theSRs': 'sreptext',
+                              'theRules': 'ruletext' };
+                    
+                    var metadataFields =
+                        { 'theLanguage': 'data-language',
+                          'theFamily': 'data-family',
+                          'theSource': 'data-source' };
+                    
+                    var json = $.parseJSON(e.target.result);
+
+                    console.log(json);
+
+                    $.each(dataFields, function(k1, k2) {
+                        var qid = '#' + k2;
+                        $(qid).val(json[k1].join("\n"));
+                    });
+
+                    $.each(metadataFields, function(k1, k2) {
+                        var qid = '#' + k2 + ' span';
+                        $(qid).text(json[k1]);
+                    });
+                    
+                    evaluate();
+                };
+            })(f);
+
+            reader.readAsText(f);
+        }
+    };
+
     
     $('#evaluate').button();
     $('#evaluate').click(evaluate);
     
-    $('#load').button();
-    $('#load').click(function() {});
-
     $('#files').bind("change", handleFileSelect);
     
     $('div.control').dblclick( function() {
