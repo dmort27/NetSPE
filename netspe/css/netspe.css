@@ -11,18 +11,9 @@ header
 
 body, h1, h2, textarea, li
 {
-   font-family: Charis SIL, Doulos SIL, Times New Roman, Gentium, DejaVu Sans;
-   font-size: 1em;
-}
-
-#controls
-{
-   margin: 5px 5px 0px 0px;
-}
-
-#derivation, #metadata
-{
-   margin: 5px 5px 0px 315px;
+   font-family: Charis SIL, Gentium Plus, Doulos SIL, Monaco, Lucida Grande, 
+                Times New Roman, DejaVu Serif, DejaVu Sans, serif, sans;
+   font-size: 0.8em;
 }
 
 h1, h2
@@ -47,17 +38,15 @@ h2
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-}
-
-controls h1
-{
-   width: 300px;
+  text-align: center;
+  padding: 2px 2px 2px 2px;
 }
 
 textarea
 {
    width: 300px;
    height: 100px;
+   font-size: 0.7em;
 }
 
 table, th, td
@@ -78,11 +67,10 @@ td
    padding-right: 1em;
 }
 
-.control
+controls h1, .control
 {
    width: 300px;
 }
-
 
 tr.ur td 
 {
@@ -107,7 +95,7 @@ ul.sortable
 ul.sortable li
 {
    margin: 0;
-   font-size: 0.8em;
+   font-size: 0.7em;
    height: 1.5em;
    font-weight: normal;
 }
@@ -115,7 +103,6 @@ ul.sortable li
 .phonetic
 {
    font-family: "Charis SIL", "Doulos SIL", "Times New Roman", "Gentium Plus", "DejaVu Sans";
-   font-size: 1em;
 }
 
 .placeholder
@@ -124,6 +111,17 @@ ul.sortable li
    font-size: 1em;
    text-align: center;
 }
+
+#controls
+{
+   margin: 5px 5px 0px 0px;
+}
+
+#derivation, #metadata
+{
+   margin: 5px 5px 0px 315px;
+}
+
 
 #metadata div
 {
@@ -144,4 +142,9 @@ ul.sortable li
 #files, #evaluate, #alphavars
 {
    width: 300px;
+}
+
+.fileinput-wrapper
+{
+    width: 300px;
 }

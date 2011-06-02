@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
     <title>NetSPE</title>
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-darkness/jquery-ui.css" rel="stylesheet" type="text/css"></link>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/sunny/jquery-ui.css" rel="stylesheet" type="text/css"></link>
     <!-- <link href="js/jquery-ui-1.8.13.custom/css/ui-darkness/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css"></link> -->
     <link href="css/netspe.css" rel="stylesheet" type="text/css"></link>
     <link href="css/fileinput.css" rel="stylesheet" type="text/css"></link>
@@ -19,9 +19,11 @@
   </head>
   <body>
     <div id="header">
-      <h1><img src="images/netspe.png" alt="NetSPE"/></h1>
+      <h1 class="ui-widget ui-widget-header ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br phonetic">
+	<img src="images/netspe.png" alt="NetSPE"/>
+      </h1>
     </div>
-    <div id="controls" class="controls" style="float:left">
+    <div id="controls" class="ui-widget phonetic" style="float:left">
       <div id="repcontrol" class="control">
 	<h2>URs</h2>
 	<textarea id="reptext" name="reptext" cols="1" rows="1"></textarea>
@@ -40,15 +42,13 @@
 	<button>γ</button>
 	<button>δ</button>
 	<button>ε</button>
-	<button>ϛ</button>
       </div>
       <button id="evaluate">Evaluate Derivation</button>
       <div></div>
-      <p>Play an existing puzzle:</p>
       <input type="file" id="files" name="files[]" />
     </div>
 
-    <div id="main">
+    <div id="main" class="ui-widget ui-corner-tl ui-corner-tr phonetic">
       <div id="derivation">
 	<h2>Derivation</h2>
 	<div id="derivation-container">

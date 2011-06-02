@@ -1,9 +1,22 @@
+// Encloses a string s in delimiters l and r.
 var enclose = function(l, r, s) {
     return l + s + r;
 };
 
-var phoneticFonts = 'Charis SIL, Gentium Plus, Doulos SIL, Times New Roman, DejaVu Serif, DejaVu Sans, serif, sans';
+// Strips the first and last characters from x.
+var unenclose = function(x) {
+    return x.slice(1, x.length - 1);
+};
 
+var mapAddBoundaries = function(xs) {
+    return $.map(xs, function(v, i) {
+        return enclose('#', '#', v);
+    });
+};
+
+var phoneticFonts = 'Charis SIL, Gentium Plus, Doulos SIL, Monaco, Lucida Grande, Times New Roman, DejaVu Serif, DejaVu Sans, serif, sans';
+
+// converts a textarea control into a sortable list.
 var textareaToSortableList = function(id) {
 
     var newList = $('<ul />').attr('id', id).addClass('sortable');
@@ -17,11 +30,17 @@ var textareaToSortableList = function(id) {
     $('#' + id).replaceWith(newList);
     $('#' + id).sortable().disableSelection();
     $('#' + id + ' li').addClass('ui-state-default')
-        .css('font-family', phoneticFonts)
-        .css('font-size', '0.8em');
+        .css({
+            'font-family': phoneticFonts,
+            'font-size': '0.7em',
+            'padding': '5px 5px 5px 5px',
+            'margin': '1px 0 1px 0',
+            'width': '295px',
+        });
 
 };
 
+// converts a sortable list into a textarea control.
 var sortableListToTextarea = function(id) {
     var ruleList = [];
     $('#' + id + ' li').each(function(i) {
@@ -32,27 +51,24 @@ var sortableListToTextarea = function(id) {
             .attr('id', id)
             .text(ruleList.join('\n'))
             .addClass('phonetic')
-            .css('font-family', phoneticFonts)
-            .css('font-size', '0.8em')
-    );
+            .css({
+                'font-family': phoneticFonts,
+                 'font-size': '0.7em'
+            }));
 };
 
 $(document).ready( function() {
-    
-    $('textarea').css('font-family', 'Charis SIL, Gentium Plus, Doulos SIL, Times New Roman, DejaVu Serif, DejaVu Sans, serif, sans')
+
+    // Applies classes and styles to various parts of the document.
+    $('textarea').css('font-family', phoneticFonts)
         .css('font-size', '0.8em');
-    $("#main").addClass("ui-widget ui-corner-tl ui-corner-tr phonetic");
     $("#controls").addClass("ui-widget phonetic");
-    $(".box").addClass("ui-widget phonetic");
-    $(".control").addClass("ui-widget ui-helper-cleafix")
-        .css('padding', '2px 2px 2px 2px');
     $(".control textarea").addClass("ui-widget phonetic ui-helper-clearfix")
         .css('padding', '2px 2px 2px 2px');
-    $("h2").addClass("ui-widget ui-widget-header ui-corner-tl ui-corner-tr phonetic")
-        .css('text-align', 'center')
-        .css('padding', '2px 2px 2px 2px');
-    $('h1').addClass('ui-widget ui-widget-header  ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br phonetic');
+    $("h2").addClass("ui-widget ui-widget-header ui-corner-tl ui-corner-tr phonetic");
     
+     // This function is called to format the derivation after it has
+     // been loaded from the server. 
     var formatDerivation = function() {
         $("tr:first").addClass("ur");
         $("tr:last").addClass("sr");
@@ -72,14 +88,17 @@ $(document).ready( function() {
             .css('font-size', '1em');
 
         // Build a row of intended SRs.
-
-        unenclose = function(x) {
-            return x.slice(1, x.length - 1);
-        };
         
         var srepsTR = $('<tr/>');
-        var srepsCalc = $('#main table tr:last-child').children().map(function() { return unenclose($(this).text()); });
+
+        var srepsCalc = $('#main table tr:last-child')
+            .children().map( function() {
+                return unenclose($(this).text());
+            });
+
         $.each($('#sreptext').val().split('\n'), function(i, v) {
+            // Applies formatting if the calculated form is different
+            // from the expected value.
             if (v === srepsCalc[i]) {
                 srepsTR.append($('<td></td>').append(v));
             } else {
@@ -103,7 +122,7 @@ $(document).ready( function() {
                       formatDerivation();
                   });
     };
-
+    
     var handleFileSelect = function(evt) {
         console.log("File was changed.");
             var files = evt.target.files;
@@ -121,12 +140,18 @@ $(document).ready( function() {
                     var dataFields =
                         { 'theURs': 'reptext',
                           'theSRs': 'sreptext',
-                              'theRules': 'ruletext' };
+                          'theRules': 'ruletext' };
                     
                     var metadataFields =
                         { 'theLanguage': 'data-language',
                           'theFamily': 'data-family',
                           'theSource': 'data-source' };
+
+                    var fixedFields =
+                        { 'withFixedURs': 'reptext',
+                          'withFixedSRs': 'sreptext',
+                          'withFixedRules': 'ruletext'};
+                        
                     
                     var json = $.parseJSON(e.target.result);
 
@@ -134,12 +159,25 @@ $(document).ready( function() {
 
                     $.each(dataFields, function(k1, k2) {
                         var qid = '#' + k2;
-                        $(qid).val(json[k1].join("\n"));
+                        var xs;
+                        if (k1 != 'theRules' && json['withAutoBounds']) {
+                            xs = mapAddBoundaries(json[k1]);
+                        } else {
+                            xs = json[k1];
+                        }
+                        $(qid).val(xs.join("\n"));
                     });
 
                     $.each(metadataFields, function(k1, k2) {
                         var qid = '#' + k2 + ' span';
                         $(qid).text(json[k1]);
+                    });
+
+                    $.each(fixedFields, function(k1, k2) {
+                        var qid = '#' + k2;
+                        if (json[k1]) {
+                            $(qid).attr('readonly', 'readonly');
+                        };
                     });
                     
                     evaluate();
@@ -176,5 +214,9 @@ $(document).ready( function() {
     $("#alphabuttons button").click(function() {
        $("#ruletext").append($(this).text()); 
     });
+
+    $('button span').addClass('phonetic');
+    $('.fileinput-wrapper').addClass('phonetic');
+    $('.fileinput-wrapper span').addClass('phonetic');
     
 });
