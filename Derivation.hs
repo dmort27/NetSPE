@@ -30,7 +30,7 @@ cgiMain = setHeader "Content-type" "text/html; charset=UTF-8" >>
           fmap (decodeString . fromMaybe "") (getInput "ruletext") >>= 
           \rs -> (getInput "reptext" >>= 
                            output . encodeString . formatTable . 
-                           maybeDerivationV' defState rs . decodeString . fromMaybe "")
+                           maybeDerivationV' defState rs . decodeString . fromMaybe "<p class='error'>Error in input.</p>")
 
 main :: IO ()
 main = runCGI (handleErrors cgiMain)
