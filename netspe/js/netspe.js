@@ -19,7 +19,7 @@ var phoneticFonts = 'Charis SIL, Gentium Plus, Doulos SIL, Monaco, Lucida Grande
 // converts a textarea control into a sortable list.
 var textareaToSortableList = function(id) {
 
-    var newList = $('<ul />').attr('id', id).addClass('sortable');
+    var newList = $('<ul />').attr('id', id).addClass('sortable-parent');
 
     $.each($('#' + id).val().split('\n'), function (i, x) {
         newList.append($('<li />').append(x));
@@ -29,32 +29,24 @@ var textareaToSortableList = function(id) {
     
     $('#' + id).replaceWith(newList);
     $('#' + id).sortable().disableSelection();
-    $('#' + id + ' li').addClass('ui-state-default')
-        .css({
-            'font-family': phoneticFonts,
-            'font-size': '0.7em',
-            'padding': '5px 5px 5px 5px',
-            'margin': '1px 0 1px 0',
-            'width': '295px',
-        });
+    $('#' + id + ' li').addClass('ui-state-default phonetic sortable-item');
 
 };
 
 // converts a sortable list into a textarea control.
 var sortableListToTextarea = function(id) {
     var ruleList = [];
-    $('#' + id + ' li').each(function(i) {
+    var qid = '#' + id;
+    $(qid + ' li').each(function(i) {
         ruleList[i] = $(this).text();
     });
-    $('#' + id).replaceWith(
+    $(qid).replaceWith(
         $('<textarea />')
             .attr('id', id)
             .text(ruleList.join('\n'))
-            .addClass('phonetic')
-            .css({
-                'font-family': phoneticFonts,
-                 'font-size': '0.7em'
-            }));
+            .addClass('phonetic'));
+    $(qid).css({'font-family': phoneticFonts,
+                'font-size': '0.8em'});
 };
 
 $(document).ready( function() {
@@ -67,8 +59,8 @@ $(document).ready( function() {
         .css('padding', '2px 2px 2px 2px');
     $("h2").addClass("ui-widget ui-widget-header ui-corner-tl ui-corner-tr phonetic");
     
-     // This function is called to format the derivation after it has
-     // been loaded from the server. 
+    // This function is called to format the derivation after it has
+        // been loaded from the server. 
     var formatDerivation = function() {
         $("tr:first").addClass("ur");
         $("tr:last").addClass("sr");
@@ -88,7 +80,7 @@ $(document).ready( function() {
             .css('font-size', '1em');
 
         // Build a row of intended SRs.
-        
+            
         var srepsTR = $('<tr/>');
 
         var srepsCalc = $('#main table tr:last-child')
@@ -106,6 +98,14 @@ $(document).ready( function() {
             }
         });
         $('#main table').append(srepsTR);
+
+        // Get rules (with fillers).
+        var rules = ["UR"].concat($('#ruletext').val().split('\n'), ["SR (predicted)", "SR (observed)"]);
+
+        // Append rule to each table row
+        $('#derivation-container tr').each( function(i, tr) {
+            $(tr).append($('<td />').text(rules[i]));
+        });
     };
     
     var evaluate = function() {
@@ -115,17 +115,18 @@ $(document).ready( function() {
         });
         
         var dt = { ruletext: $('#ruletext').val(),
-	           reptext: $('#reptext').val() };
+	           reptext: $('#reptext').val().replace(/[-]/gi, '') };
         $('#derivation-container')
             .load('/cgi-bin/netspe/derivation.cgi', dt,
                   function(){
                       formatDerivation();
                   });
     };
-    
+
+    // Handles a file which is uploaded.
     var handleFileSelect = function(evt) {
-        console.log("File was changed.");
-            var files = evt.target.files;
+            console.log("File was changed.");
+        var files = evt.target.files;
         
         for (var i = 0, f; f = files[i]; i++) {
             if (!f.type.match(".*")) {
@@ -136,52 +137,52 @@ $(document).ready( function() {
             var reader = new FileReader();
             
             reader.onload = (function(theFile) {
-                return function(e) {
-                    var dataFields =
-                        { 'theURs': 'reptext',
-                          'theSRs': 'sreptext',
-                          'theRules': 'ruletext' };
-                    
-                    var metadataFields =
-                        { 'theLanguage': 'data-language',
-                          'theFamily': 'data-family',
-                          'theSource': 'data-source' };
-
-                    var fixedFields =
-                        { 'withFixedURs': 'reptext',
-                          'withFixedSRs': 'sreptext',
-                          'withFixedRules': 'ruletext'};
+                    return function(e) {
+                        var dataFields =
+                            { 'theURs': 'reptext',
+                              'theSRs': 'sreptext',
+                              'theRules': 'ruletext' };
                         
-                    
-                    var json = $.parseJSON(e.target.result);
+                        var metadataFields =
+                            { 'theLanguage': 'data-language',
+                              'theFamily': 'data-family',
+                              'theSource': 'data-source' };
 
-                    console.log(json);
+                        var fixedFields =
+                            { 'withFixedURs': 'reptext',
+                              'withFixedSRs': 'sreptext',
+                              'withFixedRules': 'ruletext'};
+                        
+                        
+                        var json = $.parseJSON(e.target.result);
 
-                    $.each(dataFields, function(k1, k2) {
-                        var qid = '#' + k2;
-                        var xs;
-                        if (k1 != 'theRules' && json['withAutoBounds']) {
-                            xs = mapAddBoundaries(json[k1]);
-                        } else {
-                            xs = json[k1];
-                        }
-                        $(qid).val(xs.join("\n"));
-                    });
+                        console.log(json);
 
-                    $.each(metadataFields, function(k1, k2) {
-                        var qid = '#' + k2 + ' span';
-                        $(qid).text(json[k1]);
-                    });
+                        $.each(dataFields, function(k1, k2) {
+                            var qid = '#' + k2;
+                            var xs;
+                            if (k1 != 'theRules' && json['withAutoBounds']) {
+                                xs = mapAddBoundaries(json[k1]);
+                            } else {
+                                xs = json[k1];
+                            }
+                            $(qid).val(xs.join("\n"));
+                        });
 
-                    $.each(fixedFields, function(k1, k2) {
-                        var qid = '#' + k2;
-                        if (json[k1]) {
-                            $(qid).attr('readonly', 'readonly');
-                        };
-                    });
-                    
-                    evaluate();
-                };
+                        $.each(metadataFields, function(k1, k2) {
+                            var qid = '#' + k2 + ' span';
+                            $(qid).text(json[k1]);
+                        });
+
+                        $.each(fixedFields, function(k1, k2) {
+                            var qid = '#' + k2;
+                            if (json[k1]) {
+                                $(qid).attr('readonly', 'readonly');
+                            };
+                        });
+                        
+                        evaluate();
+                    };
             })(f);
 
             reader.readAsText(f);
@@ -201,7 +202,7 @@ $(document).ready( function() {
     $('div.control').dblclick( function() {
         var list = $(this).children().first().next();
         var id = list.attr('id');
-        if (list.hasClass('sortable')) {
+        if (list.hasClass('sortable-parent')) {
             sortableListToTextarea(id);
         } else {
             textareaToSortableList(id);
@@ -212,7 +213,10 @@ $(document).ready( function() {
     
     $("#alphabuttons button").button();
     $("#alphabuttons button").click(function() {
-       $("#ruletext").append($(this).text()); 
+        var ruleText = $("#ruletext").val();
+        var varName = $(this).text();
+        var pos = $("#ruletext").getSelection();
+        $("#ruletext").val(ruleText.slice(0, pos.start) + varName + ruleText.slice(pos.start + 1, ruleText.length)); 
     });
 
     $('button span').addClass('phonetic');
