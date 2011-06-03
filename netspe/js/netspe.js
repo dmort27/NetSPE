@@ -91,7 +91,7 @@ $(document).ready( function() {
         $.each($('#sreptext').val().split('\n'), function(i, v) {
             // Applies formatting if the calculated form is different
             // from the expected value.
-            if (v === srepsCalc[i]) {
+            if (v.replace(/[-]/gi, '') === srepsCalc[i]) { // remove any hyphens
                 srepsTR.append($('<td></td>').append(v));
             } else {
                 srepsTR.append($('<td></td>').append($('<b></b>').append(v)));
