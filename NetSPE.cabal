@@ -47,4 +47,6 @@ Executable derivation.cgi
   Main-is: Derivation.hs
   Build-depends: base, cgi, containers, utf8-string, HsSPE
   
-  
+Executable lint.cgi
+  Main-is: Lint.hs
+  Build-depends: base, cgi, containers, utf8-string, HsSPE

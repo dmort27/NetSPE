@@ -18,6 +18,8 @@ maybeDerivationV' st ruleText = transpose .
                                 map (flip (maybeDerivationV (readRuleV st)) (lines ruleText)) . 
                                 toRepresentations st
 
+errorMessage = "<p class='error'>Error in input!</p>"
+
 formatTable :: [[Maybe String]] -> String
 formatTable = ("<table>"++) . (++"</table>") . 
               concatMap (("<tr>"++) . (++"</tr>") . 
@@ -27,10 +29,10 @@ formatTable = ("<table>"++) . (++"</table>") .
 
 cgiMain :: CGI CGIResult
 cgiMain = setHeader "Content-type" "text/html; charset=UTF-8" >> 
-          fmap (decodeString . fromMaybe "") (getInput "ruletext") >>= 
+          fmap (decodeString . fromMaybe errorMessage) (getInput "ruletext") >>= 
           \rs -> (getInput "reptext" >>= 
                            output . encodeString . formatTable . 
-                           maybeDerivationV' defState rs . decodeString . fromMaybe "<p class='error'>Error in input.</p>")
+                           maybeDerivationV' defState rs . decodeString . fromMaybe errorMessage)
 
 main :: IO ()
 main = runCGI (handleErrors cgiMain)

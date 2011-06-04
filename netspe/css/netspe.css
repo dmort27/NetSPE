@@ -140,7 +140,7 @@ tr.sr td
    text-align: center;
 }
 
-#files, #evaluate, #alphavars
+#files, #evaluate, #verify, #alphavars
 {
    width: 300px;
 }

@@ -193,6 +193,15 @@ $(document).ready( function() {
     $('#evaluate').button();
     $('#evaluate').click(evaluate);
 
+    $('#verify').button();
+    $('#verify').click(function() {
+        $.ajax({url: "/cgi-bin/netspe/lint.cgi",
+                data: {ruletext: $('#ruletext').val()},
+                success: function(msg, status, jqXHR) {
+                    $('#controls').append(msg);
+                }});
+    });
+    
     $("#files").fileinput({
         buttonText: 'Choose Puzzle...',
         inputText: 'None'
