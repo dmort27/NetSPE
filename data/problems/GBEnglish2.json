@@ -1,0 +1,33 @@
+{
+    "theURs": [
+        "bæt",
+	"pent",
+	"pentɹ",
+        "olsn",
+ 	"mɑnsn",
+	"siks-pɛns"
+    ],
+    "theSRs": [
+        "bæʔ",
+        "pẽʔ",
+	"pẽɾ̃ɹ͈",
+        "olʔsn̩",
+	"mɑ̃ʔsn̩",
+	"siks-pɛ̃ʔs"	
+    ],
+    "theRules": [
+        "0 -> t / [+cor,-syl,+son]_[+cor,-syl,+cont]",
+        "[+syl] -> [+nas] / _N",
+        "t -> ʔ / _{#, C}",
+        "n -> 0 / _ʔ",
+        "[+son] -> [+syl] / [-son]_#"
+    ],
+    "theTitle": "Great Basin English",
+    "theSource": "None",
+    "theLanguage": "Great Basin English",
+    "theFamily": "Indo-European, Germanic, West-Germanic",
+    "withAutoBounds": true,
+    "withFixedURs": true,
+    "withFixedSRs": true,
+    "withFixedRules": false
+}
