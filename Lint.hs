@@ -10,19 +10,49 @@ import Data.Phonology.RuleParsers
 import Codec.Binary.UTF8.String (encodeString, decodeString)
 import Network.CGI
 
-testRules :: String -> [Bool]
-testRules = map (all (==True) . testRuleV defState) . lines
+testRules :: String -> [(String, Bool)]
+testRules str = zip (lines str) (testRules' str)
 
-testMessage :: [Bool] -> String
-testMessage resp = if (all (==True) resp) 
-                   then "All rules are syntactically correct." 
-                   else "Rules " ++ badRules ++ " are syntactically incorrect."
-    where badRules = intercalate ", " $ map (show . snd) $ filter (not . fst) $ zip resp [1..]
+testRules' :: String -> [Bool]
+testRules' = map (all (==True) . testRuleV defState) . lines
+
+boolToJSON :: Bool -> String
+boolToJSON True = "true"
+boolToJSON False = "false"
+
+testRep :: String -> Bool
+testRep = readableIPA defState
+
+testReps :: [String] -> [Bool]
+testReps = map (readableIPA defState)
+
+nonNullReps :: String -> [String]
+nonNullReps = filter (/="") . lines
+
+repTuples :: String -> [(String, Bool)]
+repTuples reptext = zip (nonNullReps reptext) (testReps $ nonNullReps reptext)
+
+tupleToJSON :: (String, Bool) -> String
+tupleToJSON (str, bool) = 
+    "{\"item\": \"" ++ str ++ "\", \"valid\": " ++ (boolToJSON bool) ++ "}" 
+
+enquote :: String -> String
+enquote = (++"\"") . ("\""++)
+
+tuplesToJSON :: String -> [(String, Bool)] -> String
+tuplesToJSON name =  (((enquote name) ++ ":") ++) . ("["++) . (++"]") 
+                     . intercalate "," . map tupleToJSON
 
 cgiMain :: CGI CGIResult
-cgiMain = setHeader "Content-type" "text/plain; charset=UTF-8" >> 
-          fmap (testMessage . testRules . decodeString . fromMaybe "Error") 
-                   (getInput "ruleText") >>= output
-          
+cgiMain = do
+  setHeader "Content-type" "application/json; charset=UTF-8"
+  rs <- fmap (tuplesToJSON "rules" . testRules . decodeString . fromMaybe "") 
+        (getInput "ruletext")
+  urs <- fmap (tuplesToJSON "urs". repTuples . decodeString . fromMaybe "")
+         (getInput "reptext")
+  srs <- fmap (tuplesToJSON "srs". repTuples . decodeString . fromMaybe "")
+         (getInput "sreptext")
+  output $ encodeString $ ("{"++) $ (++"}") $ intercalate ", " [rs, urs, srs]
+
 main :: IO ()
 main = runCGI (handleErrors cgiMain)
