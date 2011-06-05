@@ -116,6 +116,7 @@ tr.sr td
 #controls
 {
    margin: 5px 5px 0px 0px;
+   width: 300px;
 }
 
 #derivation, #metadata
@@ -140,12 +141,22 @@ tr.sr td
    text-align: center;
 }
 
-#files, #evaluate, #verify, #alphavars
+#files, #alphavars
 {
    width: 300px;
 }
 
-.fileinput-wrapper
+#evaluate, #validate
 {
-    width: 300px;
+   width:145px;
+}
+
+#evaluate
+{
+   float: right;
+}
+
+#main
+{
+   height: 100%;
 }

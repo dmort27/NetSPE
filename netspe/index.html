@@ -4,17 +4,19 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
     <title>NetSPE</title>
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/sunny/jquery-ui.css" rel="stylesheet" type="text/css"></link>
-    <!-- <link href="js/jquery-ui-1.8.13.custom/css/ui-darkness/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css"></link> -->
+    <!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/humanity/jquery-ui.css" rel="stylesheet" type="text/css"></link> -->
+    <!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/sunny/jquery-ui.css" rel="stylesheet" type="text/css"></link> -->
+    <link href="js/jquery-ui-1.8.13.custom/css/ui-darkness/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css"></link>
     <link href="css/netspe.css" rel="stylesheet" type="text/css"></link>
     <link href="css/fileinput.css" rel="stylesheet" type="text/css"></link>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-    <!-- <script type="text/javascript" src="js/jquery-1.6.1.js"></script> -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
-    <!-- <script type="text/javascript" src="js/jquery-ui-1.8.13.custom/js/jquery-ui-1.8.13.custom.min.js"></script> -->
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery-1.6.1.js"></script>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery-ui-1.8.13.custom/js/jquery-ui-1.8.13.custom.min.js"></script>
     <script type="text/javascript" src="js/jquery-fieldselection.js"></script> 
     <script type="text/javascript" src="js/jquery.fileinput.js"></script>
+    <script type="text/javascript" src="js/jquery-custom-file-input.js"></script>
     <script type="text/javascript" src="js/netspe.js"></script>
 
   </head>
@@ -25,6 +27,7 @@
       </h1>
     </div>
     <div id="controls" class="ui-widget phonetic" style="float:left">
+      <input id="files" type="file" />
       <div id="repcontrol" class="control">
 	<h2>URs</h2>
 	<textarea id="reptext" name="reptext" cols="1" rows="1"></textarea>
@@ -37,17 +40,16 @@
 	<h2>Rules</h2>
 	<textarea id="ruletext" name="ruletext" cols="1" rows="1"></textarea>
       </div>
-      <div id="alphabuttons">
-	<button>α</button>
-	<button>β</button>
-	<button>γ</button>
-	<button>δ</button>
-	<button>ε</button>
-      </div>
-      <button id="verify">Verify Rules</button>
-      <button id="evaluate">Evaluate Derivation</button>
-      <div></div>
-      <input type="file" id="files" name="files[]" />
+      <!-- <div id="alphabuttons"> -->
+      <!-- 	<button>α</button> -->
+      <!-- 	<button>β</button> -->
+      <!-- 	<button>γ</button> -->
+      <!-- 	<button>δ</button> -->
+      <!-- 	<button>ε</button> -->
+      <!-- 	<button>ζ</button> -->
+      <!-- </div> -->
+      <button id="validate">Verify</button>
+      <button id="evaluate">Evaluate</button>
     </div>
 
     <div id="main" class="ui-widget ui-corner-tl ui-corner-tr phonetic">

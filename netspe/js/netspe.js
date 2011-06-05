@@ -188,22 +188,47 @@ $(document).ready( function() {
             reader.readAsText(f);
         }
     };
-
     
     $('#evaluate').button();
     $('#evaluate').click(evaluate);
 
-    $('#verify').button();
-    $('#verify').click(function() {
-        $.ajax({url: "/cgi-bin/netspe/lint.cgi",
-                data: {ruletext: $('#ruletext').val()},
-                success: function(msg, status, jqXHR) {
-                    $('#controls').append(msg);
-                }});
-    });
+    var $validateDialog = $('<div />')
+        .html('<div id="validate-dialog"><div>')
+        .dialog({
+            autoOpen: false,
+            title: 'Rule Validation'
+        })
+        .addClass("phonetic");
     
-    $("#files").fileinput({
-        buttonText: 'Choose Puzzle...',
+    $('#validate').button();
+    $('#validate').click(function() {
+        var url = "/cgi-bin/netspe/lint.cgi";
+        var dt = {
+            'ruletext': $('#ruletext').val(),
+            'reptext': $('#reptext').val(),
+            'sreptext': $('#sreptext').val()
+        };
+        var success = function(data) {
+            var msg = "";
+            $.each(data.rules, function(i, v) {
+                if (!v.valid) {
+                    msg += "<p>Rule <b>" + (i+1) + "</b> “" + v.item + "” is invalid.</p>";
+                }
+            });
+            if (msg === '') {
+                $('#validate-dialog').html('The rules are alright.');
+            } else {
+                $('#validate-dialog').html(msg);
+            }
+            $validateDialog.dialog('open');
+            return false;
+        };
+        $.getJSON( url, dt, success );
+        return false;
+    });
+
+       $("#files").fileinput({
+        buttonText: 'Select Puzzle File...',
         inputText: 'None'
     });
     $('#files').bind("change", handleFileSelect);
