@@ -10,8 +10,21 @@ var unenclose = function(x) {
 
 var mapAddBoundaries = function(xs) {
     return $.map(xs, function(v, i) {
-        return enclose('#', '#', v);
+        var match = /([^ ]+)( +['‘].+['’])/.exec(v);
+        if (match) {
+            return (enclose('#', '#', match[1]) + match[2]);
+        } else {
+            return enclose('#', '#', v);
+        }
     });
+};
+
+var parseFormGloss = function(x) {
+    var match = /([^ ]+)(\s+['‘].+['’]|)/.exec(x);
+    var result = new Object;
+    result.form = match[1];
+    result.gloss = match[2];
+    return result;
 };
 
 var phoneticFonts = 'Charis SIL, Gentium Plus, Doulos SIL, Monaco, Lucida Grande, Times New Roman, DejaVu Serif, DejaVu Sans, serif, sans';
@@ -62,8 +75,8 @@ $(document).ready( function() {
     // This function is called to format the derivation after it has
         // been loaded from the server. 
     var formatDerivation = function() {
-        $("tr:first").addClass("ur");
-        $("tr:last").addClass("sr");
+        $("tr:first").addClass("ur ui-priority-primary phonetic");
+        $("tr:last").addClass("sr ui-priority-primary ui-corner-bottom phonetic");
         $("tr.ur td").each(function(i) {
             $(this).text(enclose('/', '/', $(this).text()));
         });
@@ -81,7 +94,7 @@ $(document).ready( function() {
 
         // Build a row of intended SRs.
             
-        var srepsTR = $('<tr/>');
+var srepsTR = $('<tr/>');
 
         var srepsCalc = $('#main table tr:last-child')
             .children().map( function() {
@@ -91,13 +104,15 @@ $(document).ready( function() {
         $.each($('#sreptext').val().split('\n'), function(i, v) {
             // Applies formatting if the calculated form is different
             // from the expected value.
-            if (v.replace(/[-]/gi, '') === srepsCalc[i]) { // remove any hyphens
+            if (v.replace(/[-]/gi, '').replace(/\s+.+/gi, '') === srepsCalc[i]) { // remove any hyphens and glosses
                 srepsTR.append($('<td></td>').append(v));
             } else {
                 srepsTR.append($('<td></td>').append($('<b></b>').append(v)));
             }
         });
         $('#main table').append(srepsTR);
+
+        $('#main table tr:last').css({'border-bottom': '2px solid black'});
 
         // Get rules (with fillers).
         var rules = ["UR"].concat($('#ruletext').val().split('\n'), ["SR (predicted)", "SR (observed)"]);
@@ -115,7 +130,8 @@ $(document).ready( function() {
         });
         
         var dt = { ruletext: $('#ruletext').val(),
-	           reptext: $('#reptext').val().replace(/[-]/gi, '') };
+	           reptext: $('#reptext').val().replace(/[-]/gi, '').replace(/ +['‘].+['’]$/gi, '')
+                 };
         $('#derivation-container')
             .load('/cgi-bin/netspe/derivation.cgi', dt,
                   function(){
@@ -205,8 +221,8 @@ $(document).ready( function() {
         var url = "/cgi-bin/netspe/lint.cgi";
         var dt = {
             'ruletext': $('#ruletext').val(),
-            'reptext': $('#reptext').val(),
-            'sreptext': $('#sreptext').val()
+            'reptext': $('#reptext').val().replace(/\s+.+$/gi, ''),
+            'sreptext': $('#sreptext').val().replace(/\s+.+$/gi, '')
         };
         var success = function(data) {
             var msg = "";

@@ -4,9 +4,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
     <title>NetSPE</title>
-    <!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/humanity/jquery-ui.css" rel="stylesheet" type="text/css"></link> -->
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/vader/jquery-ui.css" rel="stylesheet" type="text/css"></link>
     <!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/sunny/jquery-ui.css" rel="stylesheet" type="text/css"></link> -->
-    <link href="js/jquery-ui-1.8.13.custom/css/ui-darkness/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css"></link>
+    <!-- <link href="js/jquery-ui-1.8.13.custom/css/ui-darkness/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css"></link> -->
     <link href="css/netspe.css" rel="stylesheet" type="text/css"></link>
     <link href="css/fileinput.css" rel="stylesheet" type="text/css"></link>
 
@@ -21,12 +21,11 @@
 
   </head>
   <body>
-    <div id="header">
-      <h1 class="ui-widget ui-widget-header ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br phonetic">
-	<img src="images/netspe.png" alt="NetSPE"/>
-      </h1>
+    <div id="header" class="ui-widget ui-widget-header ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br phonetic">
+      <img src="images/netspe.png" alt="NetSPE"/>
     </div>
-    <div id="controls" class="ui-widget phonetic" style="float:left">
+
+    <div id="controls" class="ui-widget phonetic">
       <input id="files" type="file" />
       <div id="repcontrol" class="control">
 	<h2>URs</h2>
@@ -48,23 +47,23 @@
       <!-- 	<button>ε</button> -->
       <!-- 	<button>ζ</button> -->
       <!-- </div> -->
+      <button id="evaluate" class="ui-priority-primary">Evaluate</button>
       <button id="validate">Verify</button>
-      <button id="evaluate">Evaluate</button>
     </div>
 
-    <div id="main" class="ui-widget ui-corner-tl ui-corner-tr phonetic">
+    <div id="main" class="ui-widget ui-corner-all phonetic">
       <div id="derivation">
 	<h2>Derivation</h2>
 	<div id="derivation-container">
 	  <p class="placeholder"></p>
 	</div>
       </div>
-    </div>
-    <div id="metadata">
-      <h2>Metadata</h2>
-      <div id="data-language">Language: <span>unknown</span>.</div>
-      <div id="data-family">Language family: <span>unknown</span>.</div>
-      <div id="data-source">Data source: <span>unknown</span>.</div>
+      <div id="metadata">
+	<h2>Metadata</h2>
+	<div id="data-language">Language: <span>unknown</span>.</div>
+	<div id="data-family">Language family: <span>unknown</span>.</div>
+	<div id="data-source">Data source: <span>unknown</span>.</div>
+      </div>
     </div>
   </body>
 </html>

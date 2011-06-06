@@ -1,12 +1,20 @@
-body, header
+body, #header
 {
    margin: 0px, 0px, 0px, 0px;
 }
 
-header
+#header
 {
    width:100%;
    clear: both;
+   height: 90px;
+}
+
+#header img
+{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 body, h1, h2, textarea, li
@@ -56,7 +64,10 @@ table, th, td
 table
 {
    border-collapse:collapse;
-   margin: 5px 5px 5px 5px;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 1em;
+   margin-bottom: 1em;
    padding: 5px 5px 5px 5px;
 }
 
@@ -73,14 +84,14 @@ controls h1, .control
 
 tr.ur td 
 {
-   border: 1px solid black;
-   background-color: #EEEEEE;;
+   border-top: 2px solid black;
+   border-bottom: 1px solid black;
 }
 
 tr.sr td
 {
-   border: 1px solid black;
-   background-color: #EEEEEE;;
+   border-top: 1px solid black;
+   border-bottom: 1px solid black;
 }
 
 .sortable-parent
@@ -115,6 +126,7 @@ tr.sr td
 
 #controls
 {
+   float: left;
    margin: 5px 5px 0px 0px;
    width: 300px;
 }
@@ -124,6 +136,10 @@ tr.sr td
    margin: 5px 5px 0px 315px;
 }
 
+#metadata
+{
+   border-bottom: 1px solid black
+}
 
 #metadata div
 {
@@ -158,5 +174,4 @@ tr.sr td
 
 #main
 {
-   height: 100%;
 }
