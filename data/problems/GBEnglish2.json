@@ -1,19 +1,19 @@
 {
     "theURs": [
-        "bæt",
-	"pent",
-	"pentɹ",
-        "olsn",
- 	"mɑnsn",
-	"siks-pɛns"
+        "bæt 'bat'",
+	"pent 'paint'",
+	"pentɹ 'painter'",
+        "olsn 'Olsen'",
+ 	"mɑnsn 'Monson'",
+	"siks-pɛns 'sixpence'"
     ],
     "theSRs": [
-        "bæʔ",
-        "pẽʔ",
-	"pẽɾ̃ɹ͈",
-        "olʔsn̩",
-	"mɑ̃ʔsn̩",
-	"siks-pɛ̃ʔs"	
+        "bæʔ 'bat'",
+        "pẽʔ 'paint'",
+	"pẽɾ̃ɹ͈ 'painter'",
+        "olʔsn̩ 'Olsen'",
+	"mɑ̃ʔsn̩ 'Monson'",
+	"siks-pɛ̃ʔs 'sixpence'"	
     ],
     "theRules": [
         "0 -> t / [+cor,-syl,+son]_[+cor,-syl,+cont]",
