@@ -27,7 +27,9 @@ var parseFormGloss = function(x) {
     return result;
 };
 
-var phoneticFonts = 'Charis SIL, Gentium Plus, Doulos SIL, Monaco, Lucida Grande, Times New Roman, DejaVu Serif, DejaVu Sans, serif, sans';
+var phoneticFonts = "FreeSans, Lucida Grande, DejaVu Sans, Menlo, Helvetica, Arial, Stone Sans Sem ITC," +
+                    "Charis SIL, Gentium Plus, STIXGeneral, Doulos SIL, Monaco, Times New Roman," +
+                    "DejaVu Serif, sans, serif";
 
 // converts a textarea control into a sortable list.
 var textareaToSortableList = function(id) {
@@ -58,15 +60,16 @@ var sortableListToTextarea = function(id) {
             .attr('id', id)
             .text(ruleList.join('\n'))
             .addClass('phonetic'));
-    $(qid).css({'font-family': phoneticFonts,
-                'font-size': '0.8em'});
+    $(qid).addClass('phonetic');;
 };
 
 $(document).ready( function() {
 
     // Applies classes and styles to various parts of the document.
-    $('textarea').css('font-family', phoneticFonts)
-        .css('font-size', '0.8em');
+    // $('textarea').css('font-family', phoneticFonts)
+    //     .css('font-size', '0.8em');
+    $('textarea').addClass('phonetic')
+        .css({'font-size': '0.9em'});
     $("#controls").addClass("ui-widget phonetic");
     $(".control textarea").addClass("ui-widget phonetic ui-helper-clearfix")
         .css('padding', '2px 2px 2px 2px');
@@ -75,8 +78,8 @@ $(document).ready( function() {
     // This function is called to format the derivation after it has
         // been loaded from the server. 
     var formatDerivation = function() {
-        $("tr:first").addClass("ur ui-priority-primary phonetic");
-        $("tr:last").addClass("sr ui-priority-primary ui-corner-bottom phonetic");
+        $("tr:first").addClass("ur ui-priority-primary");
+        $("tr:last").addClass("sr ui-priority-primary");
         $("tr.ur td").each(function(i) {
             $(this).text(enclose('/', '/', $(this).text()));
         });
@@ -90,11 +93,11 @@ $(document).ready( function() {
         });
         
         $('#derivation table').addClass("ui-widget phonetic")
-            .css('font-size', '1em');
+            .css('font-size', '0.8em');
 
         // Build a row of intended SRs.
             
-var srepsTR = $('<tr/>');
+        var srepsTR = $('<tr/>');
 
         var srepsCalc = $('#main table tr:last-child')
             .children().map( function() {
@@ -110,7 +113,7 @@ var srepsTR = $('<tr/>');
                 srepsTR.append($('<td></td>').append($('<b></b>').append(v)));
             }
         });
-        $('#main table').append(srepsTR);
+        $('#main table').append(srepsTR).addClass('phonetic');
 
         $('#main table tr:last').css({'border-bottom': '2px solid black'});
 
@@ -121,6 +124,7 @@ var srepsTR = $('<tr/>');
         $('#derivation-container tr').each( function(i, tr) {
             $(tr).append($('<td />').text(rules[i]));
         });
+        $('#main table tr').addClass('phonetic');
     };
     
     var evaluate = function() {

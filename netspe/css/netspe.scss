@@ -1,3 +1,6 @@
+$phfonts: DejaVu Sans, Lucida Grande, FreeSans, Arial, Menlo,
+   Charis SIL, Gentium Plus, STIXGeneral, Doulos SIL, Monaco, Times New Roman, DejaVu Serif, sans, serif;
+
 body, #header
 {
    margin: 0px, 0px, 0px, 0px;
@@ -19,11 +22,11 @@ body, #header
 
 body, h1, h2, textarea, li, .phonetic
 {
-   font-family: Helvetica, Lucida Grande, DejaVu Sans, FreeSans, Arial, Menlo,  
-                Charis SIL, Gentium Plus, STIXGeneral, Doulos SIL, Monaco, Times New Roman, DejaVu Serif, 
-	        sans, serif;
-   font-size: 0.9em;
-   font-weight: normal;
+   font: {
+      family: $phfonts;
+      size: 0.9em;
+      weight: normal;
+   }
 }
 
 h1, h2

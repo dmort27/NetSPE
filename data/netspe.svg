@@ -84,8 +84,9 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Fake Background"
-     style="display:inline"
-     transform="translate(-81.302544,5.5285293)">
+     style="display:none"
+     transform="translate(-81.302544,5.5285293)"
+     sodipodi:insensitive="true">
     <rect
        style="opacity:0.93999999;fill:#000000;stroke:#000000;stroke-width:5.11837816;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect2996"
