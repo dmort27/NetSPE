@@ -1,27 +1,20 @@
-$phfonts: DejaVu Sans, Lucida Grande, FreeSans, Arial, Menlo,
-   Charis SIL, Gentium Plus, STIXGeneral, Doulos SIL, Monaco, Times New Roman, DejaVu Serif, sans, serif;
+/* Variables */
 
-body, #header
-{
-   margin: 0px, 0px, 0px, 0px;
+$phfonts: DejaVu Sans, Lucida Grande, FreeSans, Menlo, Charis
+   SIL, Gentium Plus, STIXGeneral, Doulos SIL, Monaco, Times New
+   Roman, DejaVu Serif, sans, serif; 
+$zeros: 0px, 0px, 0px, 0px;
+
+/* Mixins */
+
+@mixin no-select {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-#header
-{
-   width:100%;
-   clear: both;
-   height: 90px;
-}
-
-#header img
-{
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
-}
-
-body, h1, h2, textarea, li, .phonetic
-{
+@mixin ph-font($size: 0.9em) {
    font: {
       family: $phfonts;
       size: 0.9em;
@@ -29,13 +22,102 @@ body, h1, h2, textarea, li, .phonetic
    }
 }
 
-h1, h2
-{
-   margin: 0px 0px 0px 0px;
+@mixin fancy-font($size: 0.9em) {
+   font: {
+      family: Metrophobic;
+      size: 1em;
+      weight: normal;
+   }
 }
 
-h1
-{
+@mixin main-col {
+   margin: 5px 5px 0px 315px;
+}
+
+/* Document divisions */
+
+body, html {
+   margin: 0px;
+   padding: 0px;
+   color: #000000;
+}
+
+#wrap {
+   width:960px;
+   margin:0 auto;
+}
+
+button {
+   @include fancy-font;
+}
+
+#header {
+   margin: 0px;
+   width:100%;
+   clear: both;
+   height: 90px;
+   img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+   }
+}
+
+#controls {
+   float: left;
+   margin: 5px 5px 0px 0px;
+   width: 300px;
+   textarea { 
+      font-family: $phfonts;
+      width: 300px; 
+      height: 100px; 
+   }
+   
+}
+
+#derivation {
+   @include main-col;
+   th, td {
+      border: 0px solid black;
+      padding-left: 1em;
+      padding-right: 1em;
+   }
+   tr.ur td {
+      border-top: 2px solid black;
+      border-bottom: 1px solid black;
+   }
+   tr.sr td {
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+   }
+   table {
+      border: 0px solid black;
+      border-collapse:collapse;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      padding: 5px 5px 5px 5px;
+   }
+}
+
+#metadata {
+   @include main-col;
+   @include fancy-font;
+   border-bottom: 1px solid black;
+   div {
+      font-weight: bold;
+      span {
+	 font-weight: normal;
+      }
+   }
+}
+
+// headings
+
+h1 {
+   margin: 0px;
+   @include fancy-font;
    text-align: center;
    height: 70px;
    padding-top: 10px;
@@ -44,125 +126,50 @@ h1
    background-color: #000000;
 }
 
-h2
-{
+h2 {
+   @include no-select;
+   @include fancy-font;
+   margin: 0px;
    width:100%;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
   text-align: center;
   padding: 2px 2px 2px 2px;
 }
 
-textarea
-{
-   width: 300px;
-   height: 100px;
+// Buttons
+
+#evaluate, #validate {
+   width: 49%;
 }
 
-table, th, td
-{
-   border: 0px solid black;
+#evaluate {
+   float: right;
 }
 
-table
-{
-   border-collapse:collapse;
-   margin-left: auto;
-   margin-right: auto;
-   margin-top: 1em;
-   margin-bottom: 1em;
-   padding: 5px 5px 5px 5px;
-}
+// Classes
 
-td
-{
-   padding-left: 1em;
-   padding-right: 1em;
-}
-
-controls h1, .control
-{
+.control {
    width: 300px;
 }
 
-tr.ur td 
-{
-   border-top: 2px solid black;
-   border-bottom: 1px solid black;
+.fancy {
+   @include fancy-font;
 }
 
-tr.sr td
-{
-   border-top: 1px solid black;
-   border-bottom: 1px solid black;
+.phonetic {
+   @include ph-font;
 }
 
-.sortable-parent
-{
+.sortable-parent {
    list-style-type: none;
    margin: 0;
    padding: 0;
    width: 100%;
 }
 
-.sortable-item
-{
+.sortable-item {
     font-size: 0.9em;
     padding: 5px 5px 5px 5px;
     margin: 1px 0 1px 0;
     width: 295px;
 }
 
-#controls
-{
-   float: left;
-   margin: 5px 5px 0px 0px;
-   width: 300px;
-}
-
-#derivation, #metadata
-{
-   margin: 5px 5px 0px 315px;
-}
-
-#metadata
-{
-   border-bottom: 1px solid black
-}
-
-#metadata div
-{
-   font-weight: bold;
-}
-
-#metadata div span
-{
-   font-weight: normal;
-}
-
-#alphabuttons
-{
-   width: 300px;
-   text-align: center;
-}
-
-#files, #alphavars
-{
-   width: 300px;
-}
-
-#evaluate, #validate
-{
-   width:145px;
-}
-
-#evaluate
-{
-   float: right;
-}
-
-#main
-{
-}

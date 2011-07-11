@@ -1,25 +1,76 @@
-body, #header {
-  margin: 0px, 0px, 0px, 0px; }
+/* Variables */
+/* Mixins */
+/* Document divisions */
+body, html {
+  margin: 0px;
+  padding: 0px;
+  color: #000000; }
+
+#wrap {
+  width: 960px;
+  margin: 0 auto; }
+
+button {
+  font-family: Metrophobic;
+  font-size: 1em;
+  font-weight: normal; }
 
 #header {
+  margin: 0px;
   width: 100%;
   clear: both;
   height: 90px; }
+  #header img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
 
-#header img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto; }
+#controls {
+  float: left;
+  margin: 5px 5px 0px 0px;
+  width: 300px; }
+  #controls textarea {
+    font-family: DejaVu Sans, Lucida Grande, FreeSans, Menlo, Charis SIL, Gentium Plus, STIXGeneral, Doulos SIL, Monaco, Times New Roman, DejaVu Serif, sans, serif;
+    width: 300px;
+    height: 100px; }
 
-body, h1, h2, textarea, li, .phonetic {
-  font-family: DejaVu Sans, Lucida Grande, FreeSans, Arial, Menlo, Charis SIL, Gentium Plus, STIXGeneral, Doulos SIL, Monaco, Times New Roman, DejaVu Serif, sans, serif;
-  font-size: 0.9em;
-  font-weight: normal; }
+#derivation {
+  margin: 5px 5px 0px 315px; }
+  #derivation th, #derivation td {
+    border: 0px solid black;
+    padding-left: 1em;
+    padding-right: 1em; }
+  #derivation tr.ur td {
+    border-top: 2px solid black;
+    border-bottom: 1px solid black; }
+  #derivation tr.sr td {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black; }
+  #derivation table {
+    border: 0px solid black;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 5px 5px 5px 5px; }
 
-h1, h2 {
-  margin: 0px 0px 0px 0px; }
+#metadata {
+  margin: 5px 5px 0px 315px;
+  font-family: Metrophobic;
+  font-size: 1em;
+  font-weight: normal;
+  border-bottom: 1px solid black; }
+  #metadata div {
+    font-weight: bold; }
+    #metadata div span {
+      font-weight: normal; }
 
 h1 {
+  margin: 0px;
+  font-family: Metrophobic;
+  font-size: 1em;
+  font-weight: normal;
   text-align: center;
   height: 70px;
   padding-top: 10px;
@@ -28,43 +79,36 @@ h1 {
   background-color: #000000; }
 
 h2 {
-  width: 100%;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  font-family: Metrophobic;
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0px;
+  width: 100%;
   text-align: center;
   padding: 2px 2px 2px 2px; }
 
-textarea {
-  width: 300px;
-  height: 100px; }
+#evaluate, #validate {
+  width: 49%; }
 
-table, th, td {
-  border: 0px solid black; }
+#evaluate {
+  float: right; }
 
-table {
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  padding: 5px 5px 5px 5px; }
-
-td {
-  padding-left: 1em;
-  padding-right: 1em; }
-
-controls h1, .control {
+.control {
   width: 300px; }
 
-tr.ur td {
-  border-top: 2px solid black;
-  border-bottom: 1px solid black; }
+.fancy {
+  font-family: Metrophobic;
+  font-size: 1em;
+  font-weight: normal; }
 
-tr.sr td {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black; }
+.phonetic {
+  font-family: DejaVu Sans, Lucida Grande, FreeSans, Menlo, Charis SIL, Gentium Plus, STIXGeneral, Doulos SIL, Monaco, Times New Roman, DejaVu Serif, sans, serif;
+  font-size: 0.9em;
+  font-weight: normal; }
 
 .sortable-parent {
   list-style-type: none;
@@ -77,33 +121,3 @@ tr.sr td {
   padding: 5px 5px 5px 5px;
   margin: 1px 0 1px 0;
   width: 295px; }
-
-#controls {
-  float: left;
-  margin: 5px 5px 0px 0px;
-  width: 300px; }
-
-#derivation, #metadata {
-  margin: 5px 5px 0px 315px; }
-
-#metadata {
-  border-bottom: 1px solid black; }
-
-#metadata div {
-  font-weight: bold; }
-
-#metadata div span {
-  font-weight: normal; }
-
-#alphabuttons {
-  width: 300px;
-  text-align: center; }
-
-#files, #alphavars {
-  width: 300px; }
-
-#evaluate, #validate {
-  width: 145px; }
-
-#evaluate {
-  float: right; }
