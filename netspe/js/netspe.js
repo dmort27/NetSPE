@@ -70,10 +70,10 @@ $(document).ready( function() {
     //     .css('font-size', '0.8em');
     $('textarea').addClass('phonetic')
         .css({'font-size': '0.9em'});
-    $("#controls").addClass("ui-widget phonetic");
-    $(".control textarea").addClass("ui-widget phonetic ui-helper-clearfix")
+    $("#controls").addClass("ui-widget");
+    $(".control textarea").addClass("ui-widget ui-helper-clearfix")
         .css('padding', '2px 2px 2px 2px');
-    $("h2").addClass("ui-widget ui-widget-header ui-corner-tl ui-corner-tr phonetic");
+    $("h2").addClass("ui-widget ui-widget-header ui-corner-tl ui-corner-tr fancy");
     
     // This function is called to format the derivation after it has
         // been loaded from the server. 
@@ -218,7 +218,7 @@ $(document).ready( function() {
             autoOpen: false,
             title: 'Rule Validation'
         })
-        .addClass("phonetic");
+        .addClass("fancy");
     
     $('#validate').button();
     $('#validate').click(function() {
@@ -273,8 +273,8 @@ $(document).ready( function() {
         $("#ruletext").val(ruleText.slice(0, pos.start) + varName + ruleText.slice(pos.start + 1, ruleText.length)); 
     });
 
-    $('button span').addClass('phonetic');
-    $('.fileinput-wrapper').addClass('phonetic');
-    $('.fileinput-wrapper span').addClass('phonetic');
+    $('button span').addClass('fancy');
+    $('.fileinput-wrapper').addClass('fancy');
+    $('.fileinput-wrapper span').addClass('fancy');
     
 });
