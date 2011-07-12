@@ -24,7 +24,7 @@ $zeros: 0px, 0px, 0px, 0px;
 
 @mixin fancy-font($size: 0.9em) {
    font: {
-      family: Metrophobic;
+      family: Arial;
       size: 1em;
       weight: normal;
    }
@@ -149,6 +149,10 @@ h2 {
 
 .control {
    width: 300px;
+}
+
+.derivation {
+   font-size: 0.9em;
 }
 
 .fancy {

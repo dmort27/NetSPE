@@ -11,7 +11,7 @@ body, html {
   margin: 0 auto; }
 
 button {
-  font-family: Metrophobic;
+  font-family: Arial;
   font-size: 1em;
   font-weight: normal; }
 
@@ -57,7 +57,7 @@ button {
 
 #metadata {
   margin: 5px 5px 0px 315px;
-  font-family: Metrophobic;
+  font-family: Arial;
   font-size: 1em;
   font-weight: normal;
   border-bottom: 1px solid black; }
@@ -68,7 +68,7 @@ button {
 
 h1 {
   margin: 0px;
-  font-family: Metrophobic;
+  font-family: Arial;
   font-size: 1em;
   font-weight: normal;
   text-align: center;
@@ -83,7 +83,7 @@ h2 {
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  font-family: Metrophobic;
+  font-family: Arial;
   font-size: 1em;
   font-weight: normal;
   margin: 0px;
@@ -100,8 +100,11 @@ h2 {
 .control {
   width: 300px; }
 
+.derivation {
+  font-size: 0.9em; }
+
 .fancy {
-  font-family: Metrophobic;
+  font-family: Arial;
   font-size: 1em;
   font-weight: normal; }
 
