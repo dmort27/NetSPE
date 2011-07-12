@@ -1,3 +1,6 @@
+// Set path to CGI programs.
+var cgiPath = '/cgi-bin/netspe/';
+
 // Encloses a string s in delimiters l and r.
 var enclose = function(l, r, s) {
     return l + s + r;
@@ -114,6 +117,88 @@ var formatDerivation = function() {
 
 };
 
+var evaluate = function() {
+    
+    $.each($('#controls ul.sortable'), function() {
+        sortableListToTextarea($(this).attr('id'));
+    });
+    
+    var dt = { ruletext: $('#ruletext').val(),
+	       reptext: $('#reptext').val().replace(/[-]/gi, '').replace(/ +['‘].+['’]$/gi, '')
+             };
+    $('#derivation-container')
+        .load(cgiPath + 'derivation.cgi', dt,
+              function() {
+                  formatDerivation();
+              });
+};
+
+// Handles a file which is uploaded.
+var handleFileSelect = function(evt) {
+    console.log("File was changed.");
+    var files = evt.target.files;
+    
+    for (var i = 0, f; f = files[i]; i++) {
+        if (!f.type.match(".*")) {
+            console.log("Did not match!");
+            continue;
+        }
+
+        var reader = new FileReader();
+        
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    var dataFields =
+                        { 'theURs': 'reptext',
+                          'theSRs': 'sreptext',
+                          'theRules': 'ruletext' };
+                    
+                    var metadataFields =
+                        { 'theLanguage': 'data-language',
+                          'theFamily': 'data-family',
+                          'theSource': 'data-source' };
+
+                    var fixedFields =
+                        { 'withFixedURs': 'reptext',
+                              'withFixedSRs': 'sreptext',
+                          'withFixedRules': 'ruletext'};
+                    
+                    
+                    var json = $.parseJSON(e.target.result);
+
+                    console.log(json);
+
+                    $.each(dataFields, function(k1, k2) {
+                        var qid = '#' + k2;
+                        var xs;
+                        if (k1 != 'theRules' && json['withAutoBounds']) {
+                            xs = mapAddBoundaries(json[k1]);
+                        } else {
+                            xs = json[k1];
+                        }
+                        $(qid).val(xs.join("\n"));
+                    });
+
+                    $.each(metadataFields, function(k1, k2) {
+                        var qid = '#' + k2 + ' span';
+                        $(qid).text(json[k1]);
+                    });
+
+                    $.each(fixedFields, function(k1, k2) {
+                        var qid = '#' + k2;
+                        if (json[k1]) {
+                            $(qid).attr('readonly', 'readonly');
+                        };
+                    });
+                    
+                    evaluate();
+                };
+            })(f);
+
+        reader.readAsText(f);
+    }
+};
+
 // Main function.
 $(document).ready( function() {
 
@@ -125,88 +210,7 @@ $(document).ready( function() {
         .css('padding', '2px 2px 2px 2px');
     $("h2").addClass("ui-widget ui-widget-header ui-corner-tl ui-corner-tr fancy");
     
-    var evaluate = function() {
-
-        $.each($('#controls ul.sortable'), function() {
-            sortableListToTextarea($(this).attr('id'));
-        });
-        
-        var dt = { ruletext: $('#ruletext').val(),
-	           reptext: $('#reptext').val().replace(/[-]/gi, '').replace(/ +['‘].+['’]$/gi, '')
-                 };
-        $('#derivation-container')
-            .load('/cgi-bin/netspe/derivation.cgi', dt,
-                  function() {
-                      formatDerivation();
-                  });
-    };
-
-    // Handles a file which is uploaded.
-    var handleFileSelect = function(evt) {
-            console.log("File was changed.");
-        var files = evt.target.files;
-        
-        for (var i = 0, f; f = files[i]; i++) {
-            if (!f.type.match(".*")) {
-                console.log("Did not match!");
-                continue;
-            }
-
-            var reader = new FileReader();
-            
-            reader.onload = (function(theFile) {
-                    return function(e) {
-                        var dataFields =
-                            { 'theURs': 'reptext',
-                              'theSRs': 'sreptext',
-                              'theRules': 'ruletext' };
-                        
-                        var metadataFields =
-                            { 'theLanguage': 'data-language',
-                              'theFamily': 'data-family',
-                              'theSource': 'data-source' };
-
-                        var fixedFields =
-                            { 'withFixedURs': 'reptext',
-                              'withFixedSRs': 'sreptext',
-                              'withFixedRules': 'ruletext'};
-                        
-                        
-                        var json = $.parseJSON(e.target.result);
-
-                        console.log(json);
-
-                        $.each(dataFields, function(k1, k2) {
-                            var qid = '#' + k2;
-                            var xs;
-                            if (k1 != 'theRules' && json['withAutoBounds']) {
-                                xs = mapAddBoundaries(json[k1]);
-                            } else {
-                                xs = json[k1];
-                            }
-                            $(qid).val(xs.join("\n"));
-                        });
-
-                        $.each(metadataFields, function(k1, k2) {
-                            var qid = '#' + k2 + ' span';
-                            $(qid).text(json[k1]);
-                        });
-
-                        $.each(fixedFields, function(k1, k2) {
-                            var qid = '#' + k2;
-                            if (json[k1]) {
-                                $(qid).attr('readonly', 'readonly');
-                            };
-                        });
-                        
-                        evaluate();
-                    };
-            })(f);
-
-            reader.readAsText(f);
-        }
-    };
-    
+    // Format and attach a handler to the 'evaluate' button.
     $('#evaluate').button();
     $('#evaluate').click(evaluate);
 
@@ -217,10 +221,11 @@ $(document).ready( function() {
             title: 'Rule Validation'
         })
         .addClass("fancy");
-    
+
+    // format and attach a handler to the 'validate' button.
     $('#validate').button();
     $('#validate').click(function() {
-        var url = "/cgi-bin/netspe/lint.cgi";
+        var url = cgiPath + "lint.cgi";
         var dt = {
             'ruletext': $('#ruletext').val(),
             'reptext': $('#reptext').val().replace(/\s+.+$/gi, ''),
@@ -245,7 +250,7 @@ $(document).ready( function() {
         return false;
     });
 
-       $("#files").fileinput({
+    $("#files").fileinput({
         buttonText: 'Select Puzzle File...',
         inputText: 'None'
     });
@@ -258,12 +263,12 @@ $(document).ready( function() {
             sortableListToTextarea(id);
         } else {
             textareaToSortableList(id);
-        }
+            }
     });
     
     formatDerivation();
     
-    $("#alphabuttons button").button();
+        $("#alphabuttons button").button();
     $("#alphabuttons button").click(function() {
         var ruleText = $("#ruletext").val();
         var varName = $(this).text();
