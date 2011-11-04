@@ -1,0 +1,17 @@
+# Introduction
+
+*NetSPE* is a web-based software program for teaching rule-based phonology.
+
+# Entering representations (URs and SRs)
+
+# Entering rules
+
+## General conventions
+
+## Feature names
+
+## Alpha variables
+
+# Reordering rules and representations
+
+# Evaluation and interpretation of feedback
