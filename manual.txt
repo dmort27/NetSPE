@@ -1,8 +1,10 @@
 # Introduction
 
-*NetSPE* is a web-based software program for teaching rule-based phonology.
+*NetSPE* is a web-based software program for teaching rule-based phonology. It allows students to work out phonology-based puzzles and to interactively test analyses of data. It is designed to be relatively simple to use but powerful.
 
 # Entering representations (URs and SRs)
+
+Underlying and surface representations must be entered for each of the forms in an analysis. In puzzles, these will usually already be present. Representations are entered, one per line, in the boxes at the left of the window labelled URs and SRs.
 
 # Entering rules
 

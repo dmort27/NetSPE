@@ -104,12 +104,16 @@ var formatDerivation = function() {
 
     $('#main table tr:last').css({'border-bottom': '2px solid black'});
     
-    // Get rules (with fillers).
-    var rules = ["UR"].concat($('#ruletext').val().split('\n'), ["SR (predicted)", "SR (observed)"]);
+    var rules = $('#ruletext').val().split('\n');
+    var urDesc = ($("#reptext").val() != "") ? "UR" : "";
+    var sRepPredDesc = ($("#reptext").val() != "" && $("#ruletext").val() != "") ? "SR (predicted)" : "";
+    var sRepObsDesc = ($("#sreptext").val() != "") ? "SR (observed)" : "";
+
+    var descriptions = [urDesc].concat(rules, [sRepPredDesc, sRepObsDesc]);
 
     // Append rule to each table row
     $('#derivation-container tr').each( function(i, tr) {
-        $(tr).append($('<td />').text(rules[i]));
+        $(tr).append($('<td />').text(descriptions[i]));
     });
     $('#derivation table tr').addClass('phonetic derivation');
     $('#derivation table').addClass('ui-widget phonetic derivation');
@@ -139,11 +143,6 @@ var handleFileSelect = function(evt) {
     var files = evt.target.files;
     
     for (var i = 0, f; f = files[i]; i++) {
-        if (!f.type.match(".*")) {
-            console.log("Did not match!");
-            continue;
-        }
-
         var reader = new FileReader();
         
             reader.onload = (function(theFile) {
@@ -250,6 +249,7 @@ $(document).ready( function() {
         return false;
     });
 
+    // Instantiate file selection widget.
     $("#files").fileinput({
         buttonText: 'Select Puzzle File...',
         inputText: 'None'
