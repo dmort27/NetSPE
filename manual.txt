@@ -85,4 +85,6 @@ Variables can be used in place of feature specifications (“+” or “-”). T
 
 # Reordering rules and representations
 
+To reorder rules and representations (URs and SRs), simply double click on the header above the the box that you want to reorder. It will switch to reordering mode. You can then drag and drop items into the desired order.
+
 # Evaluation and interpretation of feedback
