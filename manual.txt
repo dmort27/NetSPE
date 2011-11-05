@@ -85,6 +85,10 @@ Variables can be used in place of feature specifications (“+” or “-”). T
 
 # Reordering rules and representations
 
-To reorder rules and representations (URs and SRs), simply double click on the header above the the box that you want to reorder. It will switch to reordering mode. You can then drag and drop items into the desired order.
+To reorder rules and representations (URs and SRs), simply double click on the header above the the box that you want to reorder. It will switch to reordering mode. You can then drag and drop items into the desired order. Double click the header in order to return to normal mode (which you must do before evaluating the derivation).
 
 # Evaluation and interpretation of feedback
+
+If you click the **evaluate** button, a derivation will be displayed. One the top row, the URs that you gave will be listed. On the bottom row, the SRs that you give will be listed. On the second to last row, the SRs computed from the derivation will be given. Between them are rows showing the application of each of the rules.
+
+The object of the game, when using *NetSPE*, is to write and arrange the rules in such a way that the computed SRs and the given SRs are identical.
