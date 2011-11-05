@@ -4,15 +4,84 @@
 
 # Entering representations (URs and SRs)
 
-Underlying and surface representations must be entered for each of the forms in an analysis. In puzzles, these will usually already be present. Representations are entered, one per line, in the boxes at the left of the window labelled URs and SRs.
+Underlying and surface representations must be entered for each of the forms in an analysis. In puzzles, these will usually already be present. Representations are entered, one per line, in the boxes at the left of the window labelled URs and SRs. Typically, each line will start and end with the word boundary marker “#” (the legal kind of hash). Characters must be entered in Unicode representation or they will not be recognized. If they display properly in the box, they are in Unicode representation. Most tools that are available now for inputting phonetic characters are Unicode-based, so this typically is not a problem.
 
 # Entering rules
 
+Entering rules is somewhat more complicated. This is because the rule syntax is quite flexible and allows you to write many different types of rule. Once you learn the general conventions, you will be on your way toward writing you own rules.
+
 ## General conventions
+
+### The structure of rules
+
+All rules recognized by NetSPE have the structure:
+
+    A -> B / X_Y
+
+Where A describes the segment matched (the target), B describes how that segment is changed, and X and Y give the environment before and after the target. For example, one possible rule is:
+
+    p -> pʰ / #_
+
+This would state that /p/ becomes [pʰ] at the beginnings of words. A, or the target, must always consist of a single segment (diacritic modifiers are allowed).
+
+The number “0” is used to represent the absence of a segment, and thus to write deletion rules. For example, a rule deleting /ŋ/ word-finally would have the form:
+
+    ŋ -> 0 / _#
+    
+Word boundaries, as shown above, are indicated with the hash mark “#”, not with brackets.    
+
+### Feature matrices
+
+Most interesting rules cannot be stated without making reference to feature matrices. *NetSPE* has a notation for feature matrices that is simple and intuitive. A matrix containing +voice and -sonorant would be written as:
+
+    [+voi, -son]
+
+Feature matrices must be surronded by square brakets. Inside, each feature must be written with a specification (“+” or “-”). The features must be separated by commas. Spacing after commas is allowed but optional.
+
+A rule stating that obstruents become devoiced word-finally would have the following form:
+
+    [-son] -> [-voi] / _#
+
+And a rule stating that stops become voiced after nasals could have the following form:
+
+    [-cont, -son] -> [+voi] / [+nas, -syl]
+
+### Aliases
+
+For convenience, some classes can be represented in environments with single-character aliases:
+
+* C [-syl]
+* V [+syl]
+* N [+nas, -syl]
 
 ## Feature names
 
+Feature names are only useable in abbreviated form. This makes rules easier to type. The feature names and their definitions are given below:
+
+* syl = syllabic
+* son = sonorant
+* cons = consonantal
+* cont = continuant
+* delrel = delayed release
+* lat = lateral
+* nas = nasal
+* voi = voiced
+* cg = constricted glottis
+* sg = spread glottis
+* ant = anterior
+* lab = labial
+* cor = coronal
+* distr = distributed
+* hi = high
+* lo = low
+* back = back
+* round = round
+* tense = tense
+* long = long
+
 ## Alpha variables
+
+Variables can be used in place of feature specifications (“+” or “-”). They are represented by the Greek letters alpha through zeta. They can be inserted by positioning the curson are the desired location and clicking one of the Greek letter buttons on the interface. *NetSPE* does *not* allow alpha variables with feature classes (like [place]).
 
 # Reordering rules and representations
 
