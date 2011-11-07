@@ -1,14 +1,24 @@
+Title: A Guide to Using NetSPE
+Author: David R. Mortensen
+Date: 6 Nov 2011
+
 # Introduction
 
 *NetSPE* is a web-based software program for teaching rule-based phonology. It allows students to work out phonology-based puzzles and to interactively test analyses of data. It is designed to be relatively simple to use but powerful.
 
 # Entering representations (URs and SRs)
 
-Underlying and surface representations must be entered for each of the forms in an analysis. In puzzles, these will usually already be present. Representations are entered, one per line, in the boxes at the left of the window labelled URs and SRs. Typically, each line will start and end with the word boundary marker “#” (the legal kind of hash). Characters must be entered in Unicode representation or they will not be recognized. If they display properly in the box, they are in Unicode representation. Most tools that are available now for inputting phonetic characters are Unicode-based, so this typically is not a problem.
+Underlying and surface representations must be entered for each of the forms in an analysis. In puzzles, these will usually already be present. Representations are entered, one per line, in the boxes at the left of the window labelled **URs** and **SRs**. Typically, each line will start and end with the word boundary marker “#” (the legal kind of hash). Characters must be entered in Unicode representation or they will not be recognized. If they display properly in the box, they are in Unicode representation. Most tools that are available now for inputting phonetic characters are Unicode-based, so this typically is not a problem.
+
+An optional gloss (translation) may be entered after each of the SRs. It should be separated from the SR by white space (e.g. a space) and should be enclosed in single quotes:
+
+    #dɑg# 'canine'
+    #kæt# 'feline'
+    #hɔɹs# 'equine'
 
 # Entering rules
 
-Entering rules is somewhat more complicated. This is because the rule syntax is quite flexible and allows you to write many different types of rule. Once you learn the general conventions, you will be on your way toward writing you own rules.
+Entering rules is somewhat more complicated. This is because the rule syntax is quite flexible and allows you to write many different types of rules. Once you learn the general conventions, you will be on your way toward writing you own rules.
 
 ## General conventions
 
@@ -44,7 +54,7 @@ A rule stating that obstruents become devoiced word-finally would have the follo
 
 And a rule stating that stops become voiced after nasals could have the following form:
 
-    [-cont, -son] -> [+voi] / [+nas, -syl]
+    [-cont, -son] -> [+voi] / [+nas, -syl]_
 
 ### Aliases
 
@@ -56,7 +66,7 @@ For convenience, some classes can be represented in environments with single-cha
 
 ## Feature names
 
-Feature names are only useable in abbreviated form. This makes rules easier to type. The feature names and their definitions are given below:
+Feature names are only useable in abbreviated form. This makes rules easier to type. Case is significant; features must be entered in lowercase characters. The feature names and their definitions are given below:
 
 * syl = syllabic
 * son = sonorant
@@ -81,7 +91,25 @@ Feature names are only useable in abbreviated form. This makes rules easier to t
 
 ## Alpha variables
 
-Variables can be used in place of feature specifications (“+” or “-”). They are represented by the Greek letters alpha through zeta. They can be inserted by positioning the curson are the desired location and clicking one of the Greek letter buttons on the interface. *NetSPE* does *not* allow alpha variables with feature classes (like [place]).
+Variables can be used in place of feature specifications (“+” or “-”). They are represented by the Greek letters alpha through zeta. They can be inserted by positioning the curson are the desired location and clicking one of the Greek letter buttons on the interface.
+
+The following rule causes a consonant to assimilate in voicing to a preceding consonant:
+
+    [-syll] -> [αvoi] / [αvoi]_
+
+ *NetSPE* does *not* allow alpha variables with feature classes (like [place]).
+
+## Disjunctions
+
+Disjunctions (either X or Y or ...) are written between curly brackets—“{” and “}”—with the options separated by commas. A rule that devoices obstruents when they occur either at the end of a word or before another consonant can be written as follows:
+
+    [-son] -> [-voi] / _{C, #}
+
+## Quantification
+
+Support for quantification in *NetSPE* is not yet complete. It does currently support a notation for matching option (zero or one of some group). This is done by enclosing the group in parentheses. A rule that says vowels become high when preceded by a vowel and zero or one consonants can be written as follows:
+
+    [+syl] -> [+hi] / [+hi](C)_
 
 # Reordering rules and representations
 
