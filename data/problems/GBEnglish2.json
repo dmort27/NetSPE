@@ -1,17 +1,17 @@
 {
     "theURs": [
-        "bæt 'bat'",
-	"pent 'paint'",
-        "olsn 'Olsen'",
- 	"mɑnsn 'Monson'",
-	"siks-pɛns 'sixpence'"
+        "#bæt# 'bat'",
+	"#pent# 'paint'",
+        "#olsn# 'Olsen'",
+ 	"#mɑnsn# 'Monson'",
+	"#ɨkspɛns# 'expense'"
     ],
     "theSRs": [
-        "bæʔ 'bat'",
-        "pẽʔ 'paint'",
-        "olʔsn̩ 'Olsen'",
-	"mɑ̃ʔsn̩ 'Monson'",
-	"siks-pɛ̃ʔs 'sixpence'"	
+        "#bæʔ# 'bat'",
+        "#pẽʔ# 'paint'",
+        "#olʔsn̩# 'Olsen'",
+	"#mɑ̃ʔsn̩# 'Monson'",
+	"#ɨkspɛ̃ʔs# 'expence'"	
     ],
     "theRules": [
         "0 -> t / [+cor,-syl,+son]_[+cor,-syl,+cont]",
@@ -21,6 +21,8 @@
         "[+son] -> [+syl] / [-son]_#"
     ],
     "theTitle": "Great Basin English",
+    "theAuthor": "David R. Mortensen",
+    "theCopyright": "Copyright 2011, David R. Mortensen",
     "theSource": "None",
     "theLanguage": "Great Basin English",
     "theFamily": "Indo-European, Germanic, West-Germanic",
