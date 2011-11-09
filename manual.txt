@@ -6,7 +6,7 @@ Date: 6 Nov 2011
 
 *NetSPE* is a web-based software program for learning and teaching SPE-style rule-based phonology. It allows students to work out phonology-based puzzles and to interactively test analyses of data. It is designed to be relatively simple to use but powerful.
 
-# Entering representations (URs and SRs)
+# Entering representations URs and SRs)
 
 Underlying and surface representations must be entered for each of the forms in an analysis. In puzzles, these will usually already be present. Representations are entered, one per line, in the boxes at the left of the window labelled **URs** and **SRs**. Typically, each line will start and end with the word boundary marker “#” (the legal kind of hash). Characters must be entered in Unicode representation or they will not be recognized. If they display properly in the box, they are in Unicode representation. Most tools that are available now for inputting phonetic characters are Unicode-based, so this typically is not a problem.
 
@@ -18,7 +18,7 @@ An optional gloss (translation) may be entered after each of the SRs. It should 
 
 # Entering rules
 
-Entering rules is somewhat more complicated. This is because the rule syntax is quite flexible and allows you to write many different types of rules. Once you learn the general conventions, you will be on your way toward writing you own rules.
+Entering rules is somewhat more complicated. This is because the rule syntax is quite flexible and allows you to write many different types of rules. Once you learn the general conventions, you will be on your way toward writing you own.
 
 ## General conventions
 
@@ -63,6 +63,7 @@ For convenience, some classes can be represented in environments with single-cha
 * C [-syl]
 * V [+syl]
 * N [+nas, -syl]
+* X *any segment*
 
 ## Feature names
 
@@ -88,6 +89,113 @@ Feature names are only useable in abbreviated form. This makes rules easier to t
 * round = round
 * tense = tense
 * long = long
+
+## Feature values
+
+Segments have the following features in *NetSPE*:
+
+| Seg | syl | son | cons | cont | delrel | lat | nas | voi | cg | sg | ant | lab | cor | distr | hi | lo | back | round | tense | long |
+|-----|-----|-----|------|------|--------|-----|-----|-----|----|----|-----|-----|-----|-------|----|----|------|-------|-------|------|
+| p   | -   | -   | +    | -    | -      | -   | -   | -   | -  | -  | +   | +   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| pf  | -   | -   | +    | -    | +      | -   | -   | -   | -  | -  | +   | +   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| t   | -   | -   | +    | -    | -      | -   | -   | -   | -  | -  | +   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| t̪   | -   | -   | +    | -    | -      | -   | -   | -   | -  | -  | +   | -   | +   | +     | -  | -  | -    | -     |     0 | -    |
+| ts  | -   | -   | +    | -    | +      | -   | -   | -   | -  | -  | +   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| tʃ  | -   | -   | +    | -    | +      | -   | -   | -   | -  | -  | -   | -   | +   | +     | -  | -  | -    | -     |     0 | -    |
+| ʈ   | -   | -   | +    | -    | -      | -   | -   | -   | -  | -  | -   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| c   | -   | -   | +    | -    | -      | -   | -   | -   | -  | -  | -   | -   | -   | 0     | +  | -  | -    | -     |     0 | -    |
+| k   | -   | -   | +    | -    | -      | -   | -   | -   | -  | -  | -   | -   | -   | 0     | +  | -  | +    | -     |     0 | -    |
+| q   | -   | -   | +    | -    | -      | -   | -   | -   | -  | -  | -   | +   | -   | 0     | -  | -  | +    | -     |     0 | -    |
+| b   | -   | -   | +    | -    | -      | -   | -   | +   | -  | -  | +   | +   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| bv  | -   | -   | +    | -    | +      | -   | -   | +   | -  | -  | +   | +   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| d   | -   | -   | +    | -    | -      | -   | -   | +   | -  | -  | +   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| d̪   | -   | -   | +    | -    | -      | -   | -   | +   | -  | -  | +   | -   | +   | +     | -  | -  | -    | -     |     0 | -    |
+| dz  | -   | -   | +    | -    | +      | -   | -   | +   | -  | -  | +   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| dʒ  | -   | -   | +    | -    | +      | -   | -   | +   | -  | -  | -   | -   | +   | +     | -  | -  | -    | -     |     0 | -    |
+| ɖ   | -   | -   | +    | -    | -      | -   | -   | +   | -  | -  | -   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| ɟ   | -   | -   | +    | -    | -      | -   | -   | +   | -  | -  | -   | -   | -   | 0     | +  | -  | -    | -     |     0 | -    |
+| g   | -   | -   | +    | -    | -      | -   | -   | +   | -  | -  | -   | -   | -   | 0     | +  | -  | +    | -     |     0 | -    |
+| ɢ   | -   | -   | +    | -    | -      | -   | -   | +   | -  | -  | -   | -   | -   | 0     | -  | -  | +    | -     |     0 | -    |
+| ɓ   | -   | -   | +    | -    | -      | -   | -   | +   | +  | -  | +   | +   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| ɗ   | -   | -   | +    | -    | -      | -   | -   | +   | +  | -  | +   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| ʄ   | -   | -   | +    | -    | -      | -   | -   | +   | +  | -  | -   | -   | -   | 0     | +  | -  | -    | -     |     0 | -    |
+| ɠ   | -   | -   | +    | -    | -      | -   | -   | +   | +  | -  | -   | -   | -   | 0     | +  | -  | +    | -     |     0 | -    |
+| ʛ   | -   | -   | +    | -    | -      | -   | -   | +   | +  | -  | -   | -   | -   | 0     | -  | -  | +    | -     |     0 | -    |
+| ɸ   | -   | -   | +    | +    | -      | -   | -   | -   | -  | -  | +   | +   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| β   | -   | -   | +    | +    | -      | -   | -   | +   | -  | -  | +   | +   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| f   | -   | -   | +    | +    | -      | -   | -   | -   | -  | -  | +   | +   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| v   | -   | -   | +    | +    | -      | -   | -   | +   | -  | -  | +   | +   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| θ   | -   | -   | +    | +    | -      | -   | -   | -   | -  | -  | +   | -   | +   | +     | -  | -  | -    | -     |     0 | -    |
+| ð   | -   | -   | +    | +    | -      | -   | -   | +   | -  | -  | +   | -   | +   | +     | -  | -  | -    | -     |     0 | -    |
+| s   | -   | -   | +    | +    | -      | -   | -   | -   | -  | -  | +   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| s̪   | -   | -   | +    | +    | -      | -   | -   | -   | -  | -  | +   | -   | +   | +     | -  | -  | -    | -     |     0 | -    |
+| z   | -   | -   | +    | +    | -      | -   | -   | +   | -  | -  | +   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| ʃ   | -   | -   | +    | +    | -      | -   | -   | -   | -  | -  | -   | -   | +   | +     | -  | -  | -    | -     |     0 | -    |
+| ʒ   | -   | -   | +    | +    | -      | -   | -   | +   | -  | -  | -   | -   | +   | +     | -  | -  | -    | -     |     0 | -    |
+| ʂ   | -   | -   | +    | +    | -      | -   | -   | -   | -  | -  | -   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| ʐ   | -   | -   | +    | +    | -      | -   | -   | +   | -  | -  | -   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| ç   | -   | -   | +    | +    | -      | -   | -   | -   | -  | -  | -   | -   | -   | 0     | +  | -  | -    | -     |     0 | -    |
+| ʝ   | -   | -   | +    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | 0     | +  | -  | -    | -     |     0 | -    |
+| x   | -   | -   | +    | +    | -      | -   | -   | -   | -  | -  | -   | -   | -   | 0     | +  | -  | +    | -     |     0 | -    |
+| ɣ   | -   | -   | +    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | 0     | +  | -  | +    | -     |     0 | -    |
+| χ   | -   | -   | +    | +    | -      | -   | -   | -   | -  | -  | -   | -   | -   | 0     | -  | -  | +    | -     |     0 | -    |
+| ʁ   | -   | -   | +    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | 0     | -  | -  | +    | -     |     0 | -    |
+| ħ   | -   | -   | +    | +    | -      | -   | -   | -   | -  | -  | -   | -   | -   | 0     | -  | +  | +    | -     |     0 | -    |
+| ʕ   | -   | -   | +    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | 0     | -  | +  | +    | -     |     0 | -    |
+| h   | -   | -   | +    | +    | -      | -   | -   | -   | -  | +  | -   | -   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| ɦ   | -   | -   | +    | +    | -      | -   | +   | -   | -  | +  | -   | -   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| m   | -   | +   | +    | -    | -      | -   | +   | +   | -  | -  | +   | +   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| n   | -   | +   | +    | -    | -      | -   | +   | +   | -  | -  | +   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| n̪   | -   | +   | +    | -    | -      | -   | +   | +   | -  | -  | +   | -   | +   | +     | -  | -  | -    | -     |     0 | -    |
+| ɲ   | -   | +   | +    | -    | -      | -   | +   | +   | -  | -  | +   | -   | -   | 0     | +  | -  | -    | -     |     0 | -    |
+| ɳ   | -   | +   | +    | -    | -      | -   | +   | +   | -  | -  | -   | -   | +   | 0     | -  | -  | -    | -     |     0 | -    |
+| ŋ   | -   | +   | +    | -    | -      | -   | +   | +   | -  | -  | -   | -   | -   | 0     | +  | -  | +    | -     |     0 | -    |
+| ɴ   | -   | +   | +    | -    | -      | -   | +   | +   | -  | -  | -   | -   | -   | 0     | -  | -  | +    | -     |     0 | -    |
+| ɹ   | -   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | +   | -     | +  | -  | +    | +     |     0 | -    |
+| ɻ   | -   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| l   | -   | +   | +    | +    | -      | +   | -   | +   | -  | -  | +   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| l̪   | -   | +   | +    | +    | -      | +   | -   | +   | -  | -  | +   | -   | +   | +     | -  | -  | -    | -     |     0 | -    |
+| j   | -   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | 0     | +  | -  | -    | -     |     0 | -    |
+| w   | -   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | +   | -   | 0     | +  | -  | +    | +     |     0 | -    |
+| tl  | -   | +   | +    | +    | +      | +   | -   | -   | -  | -  | +   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| dl  | -   | +   | +    | +    | +      | +   | -   | +   | -  | -  | +   | -   | +   | -     | -  | -  | -    | -     |     0 | -    |
+| ʔ   | -   | +   | -    | -    | -      | -   | -   | -   | +  | -  | -   | -   | -   | 0     | -  | -  | -    | -     |     0 | -    |
+| i   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | +  | -  | -    | -     |     + | -    |
+| y   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | +   | -   | -     | +  | -  | -    | +     |     + | -    |
+| ɨ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | +  | -  | +    | -     |     + | -    |
+| u   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | +   | -   | -     | +  | -  | +    | +     |     + | -    |
+| e   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | -  | -    | -     |     + | -    |
+| ø   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | -  | -    | +     |     + | -    |
+| ʌ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | -  | +    | -     |     + | -    |
+| o   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | -  | +    | +     |     + | -    |
+| æ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | +  | -    | -     |     + | -    |
+| ɶ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | +  | -    | +     |     + | -    |
+| a   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | +  | +    | -     |     + | -    |
+| ɑ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | +  | +    | -     |     + | -    |
+| ɒ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | +  | +    | +     |     + | -    |
+| ɪ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | +  | -  | -    | -     |     - | -    |
+| ʏ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | +  | -  | -    | +     |     - | -    |
+| ɯ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | +  | -  | +    | -     |     - | -    |
+| ʊ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | +  | -  | +    | +     |     - | -    |
+| ɛ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | -  | -    | -     |     - | -    |
+| œ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | -  | -    | +     |     - | -    |
+| ə   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | -  | +    | -     |     - | -    |
+| ɔ   | +   | +   | -    | +    | -      | -   | -   | +   | -  | -  | -   | -   | -   | -     | -  | -  | +    | +     |     - | -    |
+
+Diacritics perform the following feature modifications on a segment to which they are attached:
+
+* ʷ [+back,+round]
+* ʲ [+hi]
+* ˤ [+low,+back]
+* ˠ [+hi,+back]
+* ʰ [-voi,-cg,+sg]
+* ʼ [-voi,+cg,-sg]
+* x̤ [+voi,-cg,+sg]
+* x̰ [+voi,+cg,-sg]
+* x̃ [+nas]
+* x̥ [-voi]
+* x̩ [+syl]
+* ː [+long]
 
 ## Alpha variables
 
