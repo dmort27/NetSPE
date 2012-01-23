@@ -1,0 +1,22 @@
+{
+  "theURs": [ ],
+  "theSRs": [ 
+      "klup 'club (sg.)'",
+      "klubi 'club (pl.)'",
+      "trup 'corpse' (sg.)'",
+      "trupi 'corpse' (pl.)'",
+      "lut 'ice' (sg.)'",
+      "lodi 'ice' (pl.)'",
+      "wuk 'lye (sg.)'",
+      "wugi 'lye (sg.)'"
+  ],
+  "theRules": [ ],
+  "theTitle": "Polish",
+  "theSource": "Odden, David (2005). Introducing Phonology. Cambridge: Cambridge University Press",
+  "theLanguage": "Polish",
+  "theFamily": "Indo-European, Slavic",
+  "withAutoBounds": true,
+  "withFixedURs": false,
+  "withFixedSRs": true,
+  "withFixedRules": false
+}
