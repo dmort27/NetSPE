@@ -1,0 +1,27 @@
+{
+  "theURs": [
+      "ðaʃtu ‘to bite’",
+      "ðali ‘good’",
+      "ðatʃpe ‘to eat’",
+      "tʃʔeðe ‘he killed it’",
+      "ðeze ‘tongue’",
+      "ðiʃki ‘to wash’" 
+  ],
+  "theSRs": [
+      "daʃtu ‘to bite’",
+      "dali ‘good’",
+      "datʃpe ‘to eat’",
+      "tʃʔeðe ‘he killed it’",
+      "ðeze ‘tongue’",
+      "ðiʃki ‘to wash’" 
+  ],
+  "theRules": [ ],
+  "theTitle": "Classic Osage Problem",
+  "theSource": "Odden, David (2005). Introducing Phonology. Cambridge: Cambridge University Press",
+  "theLanguage": "Osage",
+  "theFamily": "Siouan, Siouan-Catabwa",
+  "withAutoBounds": true,
+  "withFixedURs": true,
+  "withFixedSRs": true,
+  "withFixedRules": false
+}

@@ -1,0 +1,22 @@
+{
+  "theURs": [ ],
+  "theSRs": [
+    "bozorg ‘big (sg.)’",
+    "bozorgan ‘big (pl.)’",
+    "yalede ‘mother (sg.)’",
+    "yaledean ‘mother (pl.)’",
+    "setare ‘star (sg.)’",
+    "setaregan ‘star (pl.)’",
+    "bænde ‘slave’ (sg.)’",
+    "bændegan ‘slave’ (pl.)’"
+  ],
+  "theRules": [ ],
+  "theTitle": "Farsi",
+  "theSource": "Odden, David (2005). Introducing Phonology. Cambridge: Cambridge University Press",
+  "theLanguage": "Farsi",
+  "theFamily": "Indo-European, Iranian",
+  "withAutoBounds": true,
+  "withFixedURs": false,
+  "withFixedSRs": true,
+  "withFixedRules": false
+}

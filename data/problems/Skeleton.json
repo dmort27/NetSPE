@@ -1,0 +1,13 @@
+{
+  "theURs": [ ],
+  "theSRs": [ ],
+  "theRules": [ ],
+  "theTitle": "",
+  "theSource": "",
+  "theLanguage": "",
+  "theFamily": "",
+  "withAutoBounds": true,
+  "withFixedURs": true,
+  "withFixedSRs": true,
+  "withFixedRules": false
+}

@@ -1,0 +1,22 @@
+{
+  "theURs": [ ],
+  "theSRs": [ 
+    "ɟig '1'",
+    "ʃi ‘4’",
+    "ŋa ‘5’",
+    "ɟu ‘10’",
+    "ɟugɟig ‘11’",
+    "ɟubʃi ‘14’",
+    "ɟuŋa ‘15’",
+    "ŋabɟu ‘50’"
+  ],
+  "theRules": [ ],
+  "theTitle": "Tibetan",
+  "theSource": "Odden, David (2005). Introducing Phonology. Cambridge: Cambridge University Press",
+  "theLanguage": "Lhasa Tibetan",
+  "theFamily": "Sino-Tibetan, Tibeto-Burman",
+  "withAutoBounds": true,
+  "withFixedURs": false,
+  "withFixedSRs": false,
+  "withFixedRules": false
+}
