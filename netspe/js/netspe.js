@@ -251,7 +251,7 @@ $(document).ready( function() {
 
     // Instantiate file selection widget.
     $("#files").fileinput({
-        buttonText: 'Select Puzzle File...',
+        buttonText: 'Select Puzzle...',
         inputText: 'None'
     });
     $('#files').bind("change", handleFileSelect);

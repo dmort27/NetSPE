@@ -97,6 +97,9 @@ h2 {
 #evaluate {
   float: right; }
 
+#file-box {
+  padding: 5px 5px 5px 5px; }
+
 .control {
   width: 300px; }
 
