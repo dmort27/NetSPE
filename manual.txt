@@ -1,6 +1,11 @@
+latex input: mmd-article-header
 Title: A Guide to Using NetSPE
 Author: David R. Mortensen
-Date: 6 Nov 2011
+Date: 8 Nov 2011
+Base Header Level:  2
+latex mode: memoir
+latex input: mmd-article-begin-doc
+latex footer: mmd-memoir-footer
 
 # Introduction
 
