@@ -1,0 +1,20 @@
+{
+  "theURs": [ ],
+  "theSRs": [
+	"picnoʔ ‘he cuts’",
+	"picnanoʔ ‘he is cutting’",
+	"wepcenoʔ ‘he cuts them’",
+	"wepcenanoʔ ‘he is cutting them’",
+	"kepcenoʔ ‘he cuts me’",
+	"kepcenanoʔ ‘he is cutting me’"
+	],
+  "theRules": [ ],
+  "theTitle": "",
+  "theSource": "",
+  "theLanguage": "",
+  "theFamily": "",
+  "withAutoBounds": true,
+  "withFixedURs": true,
+  "withFixedSRs": true,
+  "withFixedRules": false
+}
