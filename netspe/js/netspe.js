@@ -62,8 +62,8 @@ var sortableListToTextarea = function(id) {
         $('<textarea />')
             .attr('id', id)
             .text(ruleList.join('\n'))
-            .addClass('phonetic'));
-    $(qid).addClass('phonetic');;
+            .addClass('phonetic ui-widget ui-helper-clearfix'));
+    $(qid).addClass('phonetic');
 };
 
 // This function is called to format the derivation after it has
